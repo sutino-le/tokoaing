@@ -49,10 +49,10 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'secureheaders',
             'filterAdmin' => [
-                'except' => ['main/*', 'profil/*', 'level/*', 'perusahaan/*', 'user/*', 'wilayah/*',]
+                'except' => ['auth/*', 'main/*', 'profil/*', 'level/*', 'perusahaan/*', 'user/*', 'wilayah/*',]
             ],
             'filterUser' => [
-                'except' => ['home/*', 'profil/*',]
+                'except' => ['auth/*', 'home/*', 'profil/*',]
             ],
             'toolbar',
         ],
