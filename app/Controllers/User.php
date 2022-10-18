@@ -48,7 +48,12 @@ class User extends BaseController
 
                 if ($list->valuserstatus == "Progress") {
                     $tombolEditUser = "";
+                    $tombolHapusUser = "";
+                } else if ($list->valuserid == session()->iduser) {
+                    $tombolEditUser = "";
+                    $tombolHapusUser = "";
                 } else {
+                    $tombolHapusUser = $tombolHapus;
                     $tombolEditUser = $tombolEdit;
                 }
 
@@ -57,7 +62,7 @@ class User extends BaseController
                 $row[] = $list->valusernama;
                 $row[] = $list->levelnama;
                 $row[] = $list->valuserstatus;
-                $row[] = $tombolEditUser . " " . $tombolHapus;
+                $row[] = $tombolEditUser . " " . $tombolHapusUser;
                 $data[] = $row;
             }
             $output = [

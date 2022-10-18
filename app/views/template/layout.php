@@ -46,6 +46,19 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <style>
+        body {
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -177,10 +190,10 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url() ?>/assets_admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?= base_url() ?>/upload/user.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block"><?= session()->namauser ?></a>
                     </div>
                 </div>
 
@@ -229,7 +242,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>/level/index" class="nav-link <?= ($submenu == 'kategori') ? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>/kategori/index" class="nav-link <?= ($submenu == 'kategori') ? 'active' : '' ?>">
                                         <i class="fas fa-project-diagram nav-icon"></i>
                                         <p>Kategori</p>
                                     </a>

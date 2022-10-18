@@ -51,6 +51,7 @@ class Cache extends BaseConfig
      */
     public $storePath = WRITEPATH . 'cache/';
 
+
     /**
      * --------------------------------------------------------------------------
      * Cache Include Query String
