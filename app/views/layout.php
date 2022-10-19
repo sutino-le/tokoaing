@@ -265,14 +265,14 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Produk</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <?php foreach ($databranch as $rowDataBranch) : ?>
+                        <?php foreach ($databrand as $rowDataBrand) : ?>
                             <li>
                                 <form action="<?= base_url() ?>/home/katalog" method="post">
                                     <div class="d-flex">
                                         <div class="input-group">
-                                            <input type="hidden" class="form-control" name="keywordbranch" value="<?= $rowDataBranch['branchid'] ?>">
+                                            <input type="hidden" class="form-control" name="keywordbrand" value="<?= $rowDataBrand['brandid'] ?>">
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-outline-none text-success" name="submit"><?= ucwords(strtolower($rowDataBranch['branchnama'])) ?></button>
+                                                <button type="submit" class="btn btn-outline-none text-success" name="submit"><?= ucwords(strtolower($rowDataBrand['brandnama'])) ?></button>
                                             </div>
                                         </div>
                                     </div>

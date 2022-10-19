@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelBranch;
+use App\Models\ModelBrand;
 use App\Models\ModelPerusahaan;
 use App\Models\ModelUsers;
 use App\Models\ModelWilayah;
@@ -28,9 +28,9 @@ class Profil extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
         if ($rowPeru > 0) {
             $data = [
@@ -44,7 +44,7 @@ class Profil extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
 
                 'userid'            => $rowUser['userid'],
                 'usernama'          => $rowUser['usernama'],
@@ -78,7 +78,7 @@ class Profil extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
 
                 'userid'            => 'Default',
                 'usernama'          => 'Default',
@@ -114,9 +114,9 @@ class Profil extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
         if ($rowUser['useralamatid'] == 0) {
             $id_wilayah = "";
@@ -136,7 +136,7 @@ class Profil extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
 
                 'userid'            => $rowUser['userid'],
                 'usernama'          => $rowUser['usernama'],
@@ -170,7 +170,7 @@ class Profil extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
 
                 'userid'            => 'Default',
                 'usernama'          => 'Default',
@@ -232,9 +232,9 @@ class Profil extends BaseController
             $modelPerusahaan = new ModelPerusahaan();
             $rowPeru = $modelPerusahaan->find(1);
 
-            // menampilkan branch
-            $modelBranch = new ModelBranch();
-            $cekBranch = $modelBranch->findAll();
+            // menampilkan brand
+            $modelBrand = new ModelBrand();
+            $cekBrand = $modelBrand->findAll();
 
             if ($rowPeru > 0) {
                 $data = [
@@ -248,7 +248,7 @@ class Profil extends BaseController
                     'peruemail'         => $rowPeru['peruemail'],
                     'peruicon'          => $rowPeru['peruicon'],
                     'perufoto'          => $rowPeru['perufoto'],
-                    'databranch'        => $cekBranch,
+                    'databrand'        => $cekBrand,
 
                     'userid'            => $rowUser['userid'],
                     'usernama'          => $rowUser['usernama'],
@@ -282,7 +282,7 @@ class Profil extends BaseController
                     'peruemail'         => 'Default',
                     'peruicon'          => '',
                     'perufoto'          => 'Default',
-                    'databranch'        => 'Default',
+                    'databrand'        => 'Default',
 
                     'userid'            => 'Default',
                     'usernama'          => 'Default',

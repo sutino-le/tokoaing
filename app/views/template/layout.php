@@ -247,6 +247,12 @@
                                         <p>Kategori</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>/brand/index" class="nav-link <?= ($submenu == 'brand') ? 'active' : '' ?>">
+                                        <i class="fas fa-tags nav-icon"></i>
+                                        <p>Brand</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

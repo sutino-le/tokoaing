@@ -20,18 +20,19 @@
 
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-sm btn-primary" id="tambahKategori"><i class="fas fa-plus-circle"></i>
-                    Tambah Kategori</button>
+                <a href="<?= base_url() ?>/brand/formtambah" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i>
+                    Tambah Brand</a>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
 
-                    <table style="width: 100%;" id="dataKategori" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
+                    <table style="width: 100%;" id="dataBrand" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>ID</th>
-                                <th>Kategori</th>
+                                <th>Brand</th>
+                                <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -53,14 +54,14 @@
 <div class="viewmodal" style="display: none;"></div>
 
 <script>
-    function listDataKategori() {
-        var table = $('#dataKategori').dataTable({
+    function listDataBrand() {
+        var table = $('#dataBrand').dataTable({
             destroy: true,
             "processing": true,
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url() ?>/kategori/listData",
+                "url": "<?= base_url() ?>/brand/listData",
                 "type": "POST",
             },
             "colomnDefs": [{
@@ -71,35 +72,14 @@
     }
 
     $(document).ready(function() {
-        listDataKategori();
+        listDataBrand();
     });
 
-    $(document).ready(function() {
-
-        $('#tambahKategori').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: "<?= base_url() ?>/kategori/formtambah",
-                dataType: "json",
-                success: function(response) {
-                    if (response.data) {
-                        $('.viewmodal').html(response.data).show();
-                        $('#modalTambah').modal('show');
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + '\n' + thrownError);
-                }
-            });
-        });
-
-    });
 
     function edit(katid) {
         $.ajax({
             type: "post",
-            url: "<?= base_url() ?>/kategori/formedit/" + katid,
+            url: "<?= base_url() ?>/brand/formedit/" + katid,
             dataType: "json",
             success: function(response) {
                 if (response.data) {
@@ -115,7 +95,7 @@
 
     function hapus(katid) {
         $.ajax({
-            url: "<?= base_url() ?>/kategori/hapus/" + katid,
+            url: "<?= base_url() ?>/brand/hapus/" + katid,
             dataType: "json",
             success: function(response) {
                 if (response.sukses) {

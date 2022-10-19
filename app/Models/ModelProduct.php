@@ -9,7 +9,7 @@ class ModelProduct extends Model
     protected $table            = 'product';
     protected $primaryKey       = 'prodid';
     protected $allowedFields    = [
-        'prodnama', 'prodtype', 'prodkat', 'prodbranch', 'proddeskripsi', 'prodharga', 'prodstock', 'prodgambar'
+        'prodnama', 'prodtype', 'prodkat', 'prodbrand', 'proddeskripsi', 'prodharga', 'prodstock', 'prodgambar'
     ];
 
     public function cekProduct($id)
@@ -31,6 +31,6 @@ class ModelProduct extends Model
 
     public function searchbranch($keywordbranch)
     {
-        return $this->table('product')->like('prodbranch', $keywordbranch);
+        return $this->table('product')->like('prodbrand', $keywordbranch);
     }
 }

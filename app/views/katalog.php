@@ -53,14 +53,14 @@
                         <li class="list-inline-item">
                             <button type="submit" class="btn btn-outline-none text-success" onclick="linkall()">All</button>
                         </li>
-                        <?php foreach ($databranch as $rowDataBranch) : ?>
+                        <?php foreach ($databrand as $rowDataBrand) : ?>
                             <li class="list-inline-item">
                                 <form action="" method="post">
                                     <div class="d-flex">
                                         <div class="input-group mb-3">
-                                            <input type="hidden" class="form-control" name="keywordbranch" value="<?= $rowDataBranch['branchid'] ?>">
+                                            <input type="hidden" class="form-control" name="keywordbrand" value="<?= $rowDataBrand['brandid'] ?>">
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-outline-none text-success" name="submit"><?= ucwords(strtolower($rowDataBranch['branchnama'])) ?></button>
+                                                <button type="submit" class="btn btn-outline-none text-success" name="submit"><?= ucwords(strtolower($rowDataBrand['brandnama'])) ?></button>
                                             </div>
                                         </div>
                                     </div>

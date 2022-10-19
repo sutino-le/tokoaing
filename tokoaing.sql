@@ -49,20 +49,20 @@ INSERT INTO `baner` (`banerid`, `banernama`, `banerjudul`, `banersubjudul`, `ban
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `branch`
+-- Struktur dari tabel `brand`
 --
 
-CREATE TABLE `branch` (
-  `branchid` int(11) NOT NULL,
-  `branchnama` varchar(50) NOT NULL,
-  `branchgambar` varchar(100) NOT NULL
+CREATE TABLE `brand` (
+  `brandid` int(11) NOT NULL,
+  `brandnama` varchar(50) NOT NULL,
+  `brandgambar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `branch`
+-- Dumping data untuk tabel `brand`
 --
 
-INSERT INTO `branch` (`branchid`, `branchnama`, `branchgambar`) VALUES
+INSERT INTO `brand` (`brandid`, `brandnama`, `brandgambar`) VALUES
 (1, 'GRAVER', 'logo-graver.jpg'),
 (2, 'BENEFIT', 'logo-benefit.jpg'),
 (3, 'POPULAR', 'logo-popular.png');
@@ -211,7 +211,7 @@ CREATE TABLE `product` (
   `prodnama` varchar(50) NOT NULL,
   `prodtype` varchar(50) NOT NULL,
   `prodkat` int(11) NOT NULL,
-  `prodbranch` int(11) NOT NULL,
+  `prodbrand` int(11) NOT NULL,
   `proddeskripsi` text NOT NULL,
   `prodharga` double NOT NULL,
   `prodstock` int(11) NOT NULL,
@@ -222,7 +222,7 @@ CREATE TABLE `product` (
 -- Dumping data untuk tabel `product`
 --
 
-INSERT INTO `product` (`prodid`, `prodnama`, `prodtype`, `prodkat`, `prodbranch`, `proddeskripsi`, `prodharga`, `prodstock`, `prodgambar`) VALUES
+INSERT INTO `product` (`prodid`, `prodnama`, `prodtype`, `prodkat`, `prodbrand`, `proddeskripsi`, `prodharga`, `prodstock`, `prodgambar`) VALUES
 (1, 'Credenza (CRD 2182) - Viral Series', 'CRD 2182', 3, 1, 'Viral Graver Credenza (CRD 2182)\n\n<br> Size : \n<br> Width : 1200 mm\n<br> Depth : 400 mm\n<br> Height : 600 mm', 679000, 20, 'CRD 2182.jpg'),
 (2, 'Lemari 2 Pintu Cermin (LP 2296 XL) - Agusto Series', 'LP 2296 XL', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 996 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 3450000, 20, 'LEMARI 2 PINTU CERMIN LP 2296 XL.jpg'),
 (3, 'Lemari 2 Pintu Cermin (LP 2296) - Agusto Series', 'LP 2296', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 796 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 2067000, 20, 'LEMARI 2 PINTU CERMIN LP 2296.jpg'),
@@ -2998,10 +2998,10 @@ ALTER TABLE `baner`
   ADD PRIMARY KEY (`banerid`);
 
 --
--- Indeks untuk tabel `branch`
+-- Indeks untuk tabel `brand`
 --
-ALTER TABLE `branch`
-  ADD PRIMARY KEY (`branchid`);
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`brandid`);
 
 --
 -- Indeks untuk tabel `kategori`
@@ -3043,9 +3043,9 @@ ALTER TABLE `perusahaan`
 -- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`prodid`,`prodkat`,`prodbranch`) USING BTREE,
+  ADD PRIMARY KEY (`prodid`,`prodkat`,`prodbrand`) USING BTREE,
   ADD KEY `kategori` (`prodkat`),
-  ADD KEY `branch` (`prodbranch`);
+  ADD KEY `brand` (`prodbrand`);
 
 --
 -- Indeks untuk tabel `productdetail`
@@ -3088,10 +3088,10 @@ ALTER TABLE `baner`
   MODIFY `banerid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `branch`
+-- AUTO_INCREMENT untuk tabel `brand`
 --
-ALTER TABLE `branch`
-  MODIFY `branchid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `brand`
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -3161,7 +3161,7 @@ ALTER TABLE `wilayah`
 -- Ketidakleluasaan untuk tabel `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `branch` FOREIGN KEY (`prodbranch`) REFERENCES `branch` (`branchid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `brand` FOREIGN KEY (`prodbrand`) REFERENCES `brand` (`brandid`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kategori` FOREIGN KEY (`prodkat`) REFERENCES `kategori` (`katid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

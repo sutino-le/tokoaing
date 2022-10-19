@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ModelBaner;
-use App\Models\ModelBranch;
+use App\Models\ModelBrand;
 use App\Models\ModelKategori;
 use App\Models\ModelKeranjang;
 use App\Models\ModelLevels;
@@ -28,9 +28,9 @@ class Home extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
         if ($rowPeru > 0) {
             $data = [
@@ -44,7 +44,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
             ];
         } else {
             $data = [
@@ -58,7 +58,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
             ];
         }
 
@@ -95,15 +95,15 @@ class Home extends BaseController
     {
         $keyword = $this->request->getVar('keyword');
         $keywordlink = $this->request->getVar('keywordlink');
-        $keywordbranch = $this->request->getVar('keywordbranch');
+        $keywordbrand = $this->request->getVar('keywordbrand');
 
         // menampilkan data perusahaan
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
         // menampilkan kategori
         $modelKategori = new ModelKategori();
@@ -116,8 +116,8 @@ class Home extends BaseController
             $product = $modelProduct->search($keyword);
         } else if ($keywordlink) {
             $product = $modelProduct->searchlink($keywordlink);
-        } else if ($keywordbranch) {
-            $product = $modelProduct->searchbranch($keywordbranch);
+        } else if ($keywordbrand) {
+            $product = $modelProduct->searchbrand($keywordbrand);
         } else {
             $product = $modelProduct;
         }
@@ -137,7 +137,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
                 'tampilkatalog'     => $dataProduct,
                 'pager'             => $product->pager,
                 'kategori'          => $modelKategori->findAll(),
@@ -154,7 +154,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
                 'tampilkatalog'     => 'Default',
                 'pager'             => 'Default',
                 'kategori'          => 'Default',
@@ -187,11 +187,11 @@ class Home extends BaseController
 
         $modelProductDetail = new ModelProductDetail();
 
-        $modelBranch = new ModelBranch();
-        $rowBranch = $modelBranch->find($rowProduct['prodbranch']);
+        $modelBrand = new ModelBrand();
+        $rowBrand = $modelBrand->find($rowProduct['prodbrand']);
 
 
-        $cekBranch = $modelBranch->findAll();
+        $cekBrand = $modelBrand->findAll();
 
 
 
@@ -208,18 +208,18 @@ class Home extends BaseController
                 'peruemail'             => $rowPeru['peruemail'],
                 'peruicon'              => $rowPeru['peruicon'],
                 'perufoto'              => $rowPeru['perufoto'],
-                'databranch'            => $cekBranch,
+                'databrand'            => $cekBrand,
                 'prodid'                => $rowProduct['prodid'],
                 'prodnama'              => $rowProduct['prodnama'],
                 'prodtype'              => $rowProduct['prodtype'],
                 'prodkat'               => $rowProduct['prodkat'],
-                'prodbranch'            => $rowProduct['prodbranch'],
+                'prodbrand'            => $rowProduct['prodbrand'],
                 'proddeskripsi'         => $rowProduct['proddeskripsi'],
                 'prodharga'             => $rowProduct['prodharga'],
                 'prodstock'             => $rowProduct['prodstock'],
                 'prodgambar'            => $rowProduct['prodgambar'],
                 'productDetail'         => $modelProductDetail->productDetail($rowProduct['prodid']),
-                'branchnama'            => $rowBranch['branchnama'],
+                'brandnama'            => $rowBrand['brandnama'],
                 'tampildatakeranjang'   => $rowKeranjang,
             ];
         } else {
@@ -234,18 +234,18 @@ class Home extends BaseController
                 'peruemail'             => 'Default',
                 'peruicon'              => '',
                 'perufoto'              => 'Default',
-                'databranch'            => 'Default',
+                'databrand'            => 'Default',
                 'prodid'                => 'Default',
                 'prodnama'              => 'Default',
                 'prodtype'              => 'Default',
                 'prodkat'               => 'Default',
-                'prodbranch'            => 'Default',
+                'prodbrand'            => 'Default',
                 'proddeskripsi'         => 'Default',
                 'prodharga'             => 'Default',
                 'prodstock'             => 'Default',
                 'prodgambar'            => 'Default',
                 'productDetail'         => 'Default',
-                'branchnama'            => '',
+                'brandnama'            => '',
                 'tampildatakeranjang' => 'default',
             ];
         }
@@ -260,9 +260,9 @@ class Home extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
 
         if ($rowPeru > 0) {
@@ -277,7 +277,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
             ];
         } else {
             $data = [
@@ -291,7 +291,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
             ];
         }
 
@@ -305,9 +305,9 @@ class Home extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
 
         if ($rowPeru > 0) {
@@ -322,7 +322,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
             ];
         } else {
             $data = [
@@ -336,7 +336,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
             ];
         }
 
@@ -457,9 +457,9 @@ class Home extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
         $rowPeru = $modelPerusahaan->find(1);
 
-        // menampilkan branch
-        $modelBranch = new ModelBranch();
-        $cekBranch = $modelBranch->findAll();
+        // menampilkan brand
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->findAll();
 
         // menampilakan user
         $modelUser = new ModelUsers();
@@ -484,7 +484,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databranch'        => $cekBranch,
+                'databrand'        => $cekBrand,
                 'datauser'          => $rowUser,
                 'datakeranjang'     => $rowKeranjang,
             ];
@@ -500,7 +500,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databranch'        => 'Default',
+                'databrand'        => 'Default',
                 'datauser'          => 'Default',
                 'datakeranjang'     => 'Default',
             ];
@@ -790,9 +790,9 @@ class Home extends BaseController
                 $modelPerusahaan = new ModelPerusahaan();
                 $rowPeru = $modelPerusahaan->find(1);
 
-                // menampilkan branch
-                $modelBranch = new ModelBranch();
-                $cekBranch = $modelBranch->findAll();
+                // menampilkan brand
+                $modelBrand = new ModelBrand();
+                $cekBrand = $modelBrand->findAll();
 
                 if ($rowPeru > 0) {
                     $data = [
@@ -806,7 +806,7 @@ class Home extends BaseController
                         'peruemail'         => $rowPeru['peruemail'],
                         'peruicon'          => $rowPeru['peruicon'],
                         'perufoto'          => $rowPeru['perufoto'],
-                        'databranch'        => $cekBranch,
+                        'databrand'        => $cekBrand,
                     ];
                 } else {
                     $data = [
@@ -820,7 +820,7 @@ class Home extends BaseController
                         'peruemail'         => 'Default',
                         'peruicon'          => '',
                         'perufoto'          => 'Default',
-                        'databranch'        => 'Default',
+                        'databrand'        => 'Default',
                     ];
                 }
 

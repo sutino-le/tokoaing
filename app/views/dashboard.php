@@ -15,10 +15,10 @@
         </div>
     </div>
     <div class="row">
-        <?php foreach ($databranch as $rowDataBranch) : ?>
+        <?php foreach ($databrand as $rowDataBrand) : ?>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="<?= base_url() ?>/assets/img/<?= $rowDataBranch['branchgambar'] ?>" class="rounded img-fluid"></a>
-                <h5 class="text-center mt-3 mb-3"><?= ucwords(strtolower($rowDataBranch['branchnama'])) ?></h5>
+                <a href="#"><img src="<?= base_url() ?>/assets/img/<?= $rowDataBrand['brandgambar'] ?>" class="rounded img-fluid"></a>
+                <h5 class="text-center mt-3 mb-3"><?= ucwords(strtolower($rowDataBrand['brandnama'])) ?></h5>
                 <p class="text-center"><a class="btn btn-success" href="<?= base_url() ?>/home/katalog">Pergi Belanja</a></p>
             </div>
         <?php endforeach ?>

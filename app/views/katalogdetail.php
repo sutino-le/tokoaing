@@ -62,7 +62,7 @@
                                 <h6>Brand:</h6>
                             </li>
                             <li class="list-inline-item">
-                                <p class="text-muted"><strong><?= $branchnama ?></strong></p>
+                                <p class="text-muted"><strong><?= $brandnama ?></strong></p>
                             </li>
                         </ul>
 
