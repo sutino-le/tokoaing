@@ -43,7 +43,7 @@ class Brand extends BaseController
                 $no++;
                 $row = [];
 
-                $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . $list->brandid . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
+                $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . sha1($list->brandid) . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
                 $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->brandid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
 
                 if ($list->prodbrand == "") {
@@ -94,100 +94,120 @@ class Brand extends BaseController
                 'errors'        => [
                     'required'      => '{field} tidak boleh kosong'
                 ]
-            ]
-        ]));
+            ],
+        ])) {
 
+            $validation = \Config\Services::validation();
+            return redirect()->to('brand/formtambah')->withInput()->with('validation', $validation);
+        } else {
+            $brandnama = $this->request->getPost('brandnama');
+            $brandgambar = $this->request->getFile('brandgambar');
 
-        $validation = \Config\Services::validation();
-        return redirect()->to('brand/formtambah')->withInput()->with('validation', $validation);
+            $modelBrand = new ModelBrand();
 
+            // update Foto
+            if ($brandgambar == "") {
+                $fileGambarFoto = $brandgambar->getRandomName();
+            } else {
+                $fileGambarFoto = $brandgambar->getRandomName();
 
-        // if (!$valid) {
-        //     $json = [
-        //         'error' => [
-        //             'errBrandNama'      => $validation->getError('brandnama'),
-        //         ]
-        //     ];
-        // } else {
+                $brandgambar->move('upload', $fileGambarFoto);
+            }
 
-        //     $modelBrand = new ModelBrand();
+            $modelBrand->insert([
+                'brandid'         => '',
+                'brandnama'         => $brandnama,
+                'brandgambar'           => $fileGambarFoto,
+            ]);
 
-        //     // update Foto
-        //     if ($brandgambar == "") {
-        //         // jika kosong
-        //     } else {
-        //         $fileGambarFoto = $brandgambar->getRandomName();
-
-        //         $brandgambar->move('upload', $fileGambarFoto);
-        //     }
-
-        //     $this->modelBrand->insert([
-        //         'brandid'         => '',
-        //         'brandnama'         => $brandnama,
-        //         'brandgambar'           => $fileGambarFoto,
-        //     ]);
+            return redirect()->to('brand/index');
+        }
     }
 
 
     public function formedit($brandid)
     {
 
-        $cekData        = $this->modelbrand->find($brandid);
-        if ($cekData) {
-            $data = [
-                'brandid'        => $cekData['brandid'],
-                'brandnama'         => $cekData['brandnama']
-            ];
+        $modelBrand = new ModelBrand();
+        $cekData = $modelBrand->cekBrand($brandid)->getRowArray();
 
-            $json = [
-                'data' => view('brand/modaledit', $data)
-            ];
-        }
-        echo json_encode($json);
+        $data = [
+            'title'         => 'Data Brand',
+            'menu'          => 'produk',
+            'submenu'       => 'brand',
+            'actmenu'       => '',
+            'validation'    => \Config\Services::validation(),
+            'brandid'       => $cekData['brandid'],
+            'brandnama'     => $cekData['brandnama'],
+            'brandgambar'   => $cekData['brandgambar'],
+        ];
+        return view('brand/editdata', $data);
     }
 
 
     public function updatedata()
     {
-        if ($this->request->isAJAX()) {
-            $brandidlama     = $this->request->getPost('brandidlama');
-            $brandnama      = $this->request->getPost('brandnama');
+
+
+        if (!$this->validate([
+            'brandnama'     => [
+                'rules'         => 'required',
+                'label'         => 'Brand',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+        ])) {
 
             $validation = \Config\Services::validation();
-            $valid = $this->validate([
-                'brandnama' => [
-                    'rules'     => 'required',
-                    'label'     => 'Brand',
-                    'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
-                    ]
-                ]
-            ]);
+            return redirect()->to('brand/formtambah')->withInput()->with('validation', $validation);
+        } else {
+            $brandid = $this->request->getPost('brandid');
+            $brandnama = $this->request->getPost('brandnama');
+            $brandgambar = $this->request->getFile('brandgambar');
 
-            if (!$valid) {
-                $json = [
-                    'error' => [
-                        'errBrandNama'      => $validation->getError('brandnama')
-                    ]
-                ];
-            } else {
+            // update Foto
+            if ($brandgambar == "") {
 
-                $this->modelBrand->update($brandidlama, [
+                $modelBrand = new ModelBrand();
+
+                $modelBrand->update($brandid, [
                     'brandnama'         => $brandnama,
                 ]);
+            } else {
+                $fileGambarFoto = $brandgambar->getRandomName();
 
-                $json = [
-                    'sukses'        => 'Data berhasil dirubah'
-                ];
+                $brandgambar->move('upload', $fileGambarFoto);
+
+                $modelBrand = new ModelBrand();
+                $cekBrand = $modelBrand->find($brandid);
+
+                if ($cekBrand['brandgambar'] != NULL) {
+                    unlink('upload/' . $cekBrand['brandgambar']);
+                }
+
+                $modelBrand->update(
+                    $brandid,
+                    [
+                        'brandnama'         => $brandnama,
+                        'brandgambar'           => $fileGambarFoto,
+                    ]
+                );
             }
 
-
-            echo json_encode($json);
+            return redirect()->to('brand/index');
         }
     }
 
     public function hapus($brandid)
     {
+        $modelBrand = new ModelBrand();
+        $cekBrand = $modelBrand->find($brandid);
+
+        if ($cekBrand['brandgambar'] != NULL) {
+            unlink('upload/' . $cekBrand['brandgambar']);
+        }
+
         $this->modelBrand->delete($brandid);
 
         $json = [

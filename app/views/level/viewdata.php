@@ -115,24 +115,37 @@
     }
 
     function hapus(levelid) {
-        $.ajax({
-            url: "<?= base_url() ?>/level/hapus/" + levelid,
-            dataType: "json",
-            success: function(response) {
-                if (response.sukses) {
-                    swal.fire(
-                        'Berhasil',
-                        response.sukses,
-                        'success'
-                    ).then((result) => {
-                        window.location.reload();
-                    })
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + '\n' + thrownError);
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "ingin menghapus data ini...!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "<?= base_url() ?>/level/hapus/" + levelid,
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.sukses) {
+                            swal.fire(
+                                'Berhasil',
+                                response.sukses,
+                                'success'
+                            ).then((result) => {
+                                window.location.reload();
+                            })
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + '\n' + thrownError);
+                    }
+                });
             }
-        });
+        })
     }
 </script>
 

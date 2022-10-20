@@ -20,18 +20,22 @@
 
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-sm btn-primary" id="tambahKategori"><i class="fas fa-plus-circle"></i>
-                    Tambah Kategori</button>
+                <a href="<?= base_url() ?>/product/formtambah" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i>
+                    Tambah Product</a>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
 
-                    <table style="width: 100%;" id="dataKategori" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
+                    <table style="width: 100%;" id="dataProduct" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID</th>
-                                <th>Kategori</th>
+                                <th>Product</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Price</th>
+                                <th>Stock</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -53,14 +57,14 @@
 <div class="viewmodal" style="display: none;"></div>
 
 <script>
-    function listDataKategori() {
-        var table = $('#dataKategori').dataTable({
+    function listDataProduct() {
+        var table = $('#dataProduct').dataTable({
             destroy: true,
             "processing": true,
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url() ?>/kategori/listData",
+                "url": "<?= base_url() ?>/product/listData",
                 "type": "POST",
             },
             "colomnDefs": [{
@@ -71,49 +75,15 @@
     }
 
     $(document).ready(function() {
-        listDataKategori();
+        listDataProduct();
     });
 
-    $(document).ready(function() {
 
-        $('#tambahKategori').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: "<?= base_url() ?>/kategori/formtambah",
-                dataType: "json",
-                success: function(response) {
-                    if (response.data) {
-                        $('.viewmodal').html(response.data).show();
-                        $('#modalTambah').modal('show');
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + '\n' + thrownError);
-                }
-            });
-        });
-
-    });
-
-    function edit(katid) {
-        $.ajax({
-            type: "post",
-            url: "<?= base_url() ?>/kategori/formedit/" + katid,
-            dataType: "json",
-            success: function(response) {
-                if (response.data) {
-                    $('.viewmodal').html(response.data).show();
-                    $('#modalEdit').modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + '\n' + thrownError);
-            }
-        });
+    function edit(prodid) {
+        window.location.href = "<?= base_url() ?>/product/formedit/" + prodid;
     }
 
-    function hapus(katid) {
+    function hapus(prodid) {
         Swal.fire({
             title: 'Anda yakin?',
             text: "ingin menghapus data ini...!",
@@ -126,7 +96,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?= base_url() ?>/kategori/hapus/" + katid,
+                    url: "<?= base_url() ?>/product/hapus/" + prodid,
                     dataType: "json",
                     success: function(response) {
                         if (response.sukses) {
@@ -145,6 +115,9 @@
                 });
             }
         })
+
+
+
     }
 </script>
 

@@ -234,7 +234,7 @@
 
                         <li class="nav-item <?= ($menu == 'produk') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link <?= ($menu == 'produk') ? 'active' : '' ?>">
-                                <i class="fas fa-store"></i>
+                                <i class="fas fa-database"></i>
                                 <p>
                                     Produk
                                     <i class="right fas fa-angle-left"></i>
@@ -251,6 +251,12 @@
                                     <a href="<?= base_url() ?>/brand/index" class="nav-link <?= ($submenu == 'brand') ? 'active' : '' ?>">
                                         <i class="fas fa-tags nav-icon"></i>
                                         <p>Brand</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>/product/index" class="nav-link <?= ($submenu == 'product') ? 'active' : '' ?>">
+                                        <i class="fas fa-dolly nav-icon"></i>
+                                        <p>Product</p>
                                     </a>
                                 </li>
                             </ul>
@@ -271,7 +277,7 @@
                         <div class="col-sm-6">
                             <ul class="list-group list-group-horizontal">
                                 <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/Main">Home</a></li>
-                                <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/<?= $submenu ?>"><?= $submenu ?></a></li>
+                                <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/<?= $submenu ?>/index"><?= $submenu ?></a></li>
                                 <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/<?= $actmenu ?>"><?= $actmenu ?></a></li>
                             </ul>
                         </div>

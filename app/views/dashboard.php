@@ -17,7 +17,7 @@
     <div class="row">
         <?php foreach ($databrand as $rowDataBrand) : ?>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="<?= base_url() ?>/assets/img/<?= $rowDataBrand['brandgambar'] ?>" class="rounded img-fluid"></a>
+                <a href="#"><img src="<?= base_url() ?>/upload/<?= $rowDataBrand['brandgambar'] ?>" class="rounded img-fluid"></a>
                 <h5 class="text-center mt-3 mb-3"><?= ucwords(strtolower($rowDataBrand['brandnama'])) ?></h5>
                 <p class="text-center"><a class="btn btn-success" href="<?= base_url() ?>/home/katalog">Pergi Belanja</a></p>
             </div>

@@ -76,42 +76,45 @@
     });
 
 
-    function edit(katid) {
-        $.ajax({
-            type: "post",
-            url: "<?= base_url() ?>/brand/formedit/" + katid,
-            dataType: "json",
-            success: function(response) {
-                if (response.data) {
-                    $('.viewmodal').html(response.data).show();
-                    $('#modalEdit').modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + '\n' + thrownError);
-            }
-        });
+    function edit(brandid) {
+        window.location.href = "<?= base_url() ?>/brand/formedit/" + brandid;
     }
 
-    function hapus(katid) {
-        $.ajax({
-            url: "<?= base_url() ?>/brand/hapus/" + katid,
-            dataType: "json",
-            success: function(response) {
-                if (response.sukses) {
-                    swal.fire(
-                        'Berhasil',
-                        response.sukses,
-                        'success'
-                    ).then((result) => {
-                        window.location.reload();
-                    })
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + '\n' + thrownError);
+    function hapus(brandid) {
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "ingin menghapus data ini...!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "<?= base_url() ?>/brand/hapus/" + brandid,
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.sukses) {
+                            swal.fire(
+                                'Berhasil',
+                                response.sukses,
+                                'success'
+                            ).then((result) => {
+                                window.location.reload();
+                            })
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + '\n' + thrownError);
+                    }
+                });
             }
-        });
+        })
+
+
+
     }
 </script>
 

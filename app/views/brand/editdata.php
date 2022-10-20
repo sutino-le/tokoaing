@@ -21,28 +21,35 @@
         <div class="card">
             <div class="card-header">
 
-                <h5 class="modal-title" id="staticBackdropLabel">Input Brand</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Brand</h5>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
 
-                    <form action="<?= base_url('brand/simpan') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('brand/updatedata') ?>" method="post" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
 
-
+                        <input type="hidden" name="brandid" id="brandid" value="<?= $brandid ?>">
 
                         <div class="form-group">
                             <label for="">Brand</label>
-                            <input type="text" name="brandnama" id="brandnama" class="form-control <?= ($validation->hasError('brandnama')) ? 'is-invalid' : '' ?>" value="<?= old('brandnama') ?>" placeholder="Masukan Brand..." autocomplete="off">
+                            <input type="text" name="brandnama" id="brandnama" class="form-control <?= ($validation->hasError('brandnama')) ? 'is-invalid' : '' ?>" value="<?= ($validation->hasError('brandnama')) ? old('brandnama')  :  $brandnama ?>" placeholder="Masukan Brand..." autocomplete="off">
 
                             <div class="invalid-feedback"><?= $validation->getError('brandnama') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Gambar</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="brandgambar" name="brandgambar">
-                                <label class="custom-file-label" for="brandgambar">Choose file</label>
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="<?= base_url() ?>/upload/<?= $brandgambar ?>" alt="<?= $brandgambar ?>" width="350px">
+                                </div>
+                                <div class="col-8">
+                                    <label for="">Gambar</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="brandgambar" name="brandgambar">
+                                        <label class="custom-file-label" for="brandgambar">Choose file</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
