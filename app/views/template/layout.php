@@ -35,13 +35,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets_admin/plugins/sweetalert2/sweetalert2.min.css">
     <script src="<?= base_url() ?>/assets_admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
-
-
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets_admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets_admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets_admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -61,13 +58,13 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
 
     <?= csrf_field(); ?>
 
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -269,24 +266,17 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper mb-5">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <ul class="list-group list-group-horizontal">
-                                <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/Main">Home</a></li>
-                                <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/<?= $submenu ?>/index"><?= $submenu ?></a></li>
-                                <li class="list-group-item border-0 bg-light"><a class="text-success" href="<?= base_url() ?>/<?= $actmenu ?>"><?= $actmenu ?></a></li>
-                            </ul>
-                        </div>
+                    <div class="row mb-5">
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
-            <section class="content">
+            <section class="content mb-5">
                 <div class="container-fluid">
                     <?= $this->renderSection('isi') ?>
                 </div>
@@ -295,7 +285,10 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
+
+        <br>
+
+        <footer class="main-footer fixed-bottom">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
@@ -350,6 +343,9 @@
     <script src="<?= base_url() ?>/assets_admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="<?= base_url() ?>/assets_admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?= base_url() ?>/assets_admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+
 
 
     <script>

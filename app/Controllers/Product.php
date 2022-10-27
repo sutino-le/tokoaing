@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ModelBrand;
+use App\Models\ModelKategori;
 use App\Models\ModelProduct;
 use App\Models\ModelProductPagination;
 use config\Services;
@@ -13,6 +15,8 @@ class Product extends BaseController
 
     public function __construct()
     {
+        $this->modelBrand = new ModelBrand();
+        $this->modelKategori = new ModelKategori();
         $this->modelProduct = new ModelProduct();
         helper('form');
     }
@@ -65,5 +69,161 @@ class Product extends BaseController
             ];
             echo json_encode($output);
         }
+    }
+
+    public function hapus($prodid)
+    {
+        $modelProduct = new ModelProduct();
+        $cekprod = $modelProduct->find($prodid);
+
+        if ($cekprod['prodgambar'] != NULL) {
+            unlink('upload/' . $cekprod['prodgambar']);
+        }
+
+        $this->modelProduct->delete($prodid);
+
+        $json = [
+            'sukses' => 'Data berhasil dihapus'
+        ];
+
+
+        echo json_encode($json);
+    }
+
+    public function formtambah()
+    {
+        $data = [
+            'title'             => 'Data Produk',
+            'menu'              => 'produk',
+            'submenu'           => 'product',
+            'actmenu'           => '',
+            'validation'        => \Config\Services::validation(),
+            'tampildata'        => $this->modelProduct->findAll(),
+            'tampilbrand'       => $this->modelBrand->findAll(),
+            'tampilkategori'    => $this->modelKategori->findAll()
+        ];
+        return view('product/tambahdata', $data);
+    }
+
+    public function simpan()
+    {
+
+        if (!$this->validate([
+            'prodnama'     => [
+                'rules'         => 'required',
+                'label'         => 'Produk',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'prodtype'     => [
+                'rules'         => 'required',
+                'label'         => 'Type',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'prodkat'     => [
+                'rules'         => 'required',
+                'label'         => 'Kategori',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'prodbrand'     => [
+                'rules'         => 'required',
+                'label'         => 'Brand',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'proddeskripsi'     => [
+                'rules'         => 'required',
+                'label'         => 'Deskripsi',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'prodharga'     => [
+                'rules'         => 'required',
+                'label'         => 'Harga',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+            'prodstock'     => [
+                'rules'         => 'required',
+                'label'         => 'Stok',
+                'errors'        => [
+                    'required'      => '{field} tidak boleh kosong'
+                ]
+            ],
+        ])) {
+
+            $validation = \Config\Services::validation();
+            return redirect()->to('product/formtambah')->withInput()->with('validation', $validation);
+        } else {
+            $prodnama       = $this->request->getPost('prodnama');
+            $prodtype       = $this->request->getPost('prodtype');
+            $prodkat        = $this->request->getPost('prodkat');
+            $prodbrand      = $this->request->getPost('prodbrand');
+            $proddeskripsi  = $this->request->getPost('proddeskripsi');
+            $prodharga      = $this->request->getPost('prodharga');
+            $prodstock      = $this->request->getPost('prodstock');
+            $prodgambar     = $this->request->getFile('prodgambar');
+
+            $modelProduct = new ModelProduct();
+
+            // update Foto
+            if ($prodgambar == "") {
+                $fileGambarFoto = $prodgambar->getRandomName();
+            } else {
+                $fileGambarFoto = $prodgambar->getRandomName();
+
+                $prodgambar->move('upload', $fileGambarFoto);
+            }
+
+            $modelProduct->insert([
+                'brandid'           => '',
+                'prodnama'          => $prodnama,
+                'prodtype'          => $prodtype,
+                'prodkat'           => $prodkat,
+                'prodbrand'         => $prodbrand,
+                'proddeskripsi'     => $proddeskripsi,
+                'prodharga'         => $prodharga,
+                'prodstock'         => $prodstock,
+                'prodgambar'        => $fileGambarFoto,
+            ]);
+
+            return redirect()->to('product/index');
+        }
+    }
+
+
+    public function formedit($prodid)
+    {
+
+        $modelProduct = new ModelProduct();
+        $cekData = $modelProduct->cekProduct($prodid)->getRowArray();
+
+        $data = [
+            'title'             => 'Data Produk',
+            'menu'              => 'produk',
+            'submenu'           => 'product',
+            'actmenu'           => '',
+            'validation'        => \Config\Services::validation(),
+            'prodid'            => $cekData['prodid'],
+            'prodnama'          => $cekData['prodnama'],
+            'prodtype'          => $cekData['prodtype'],
+            'prodkat'           => $cekData['prodkat'],
+            'prodbrand'         => $cekData['prodbrand'],
+            'proddeskripsi'     => $cekData['proddeskripsi'],
+            'prodharga'         => $cekData['prodharga'],
+            'prodstock'         => $cekData['prodstock'],
+            'prodgambar'        => $cekData['prodgambar'],
+            'tampilbrand'       => $this->modelBrand->findAll(),
+            'tampilkategori'    => $this->modelKategori->findAll()
+        ];
+        return view('product/editdata', $data);
     }
 }

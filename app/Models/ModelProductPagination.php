@@ -21,7 +21,7 @@ class ModelProductPagination extends Model
         $this->db = db_connect();
         $this->request = $request;
 
-        $this->dt = $this->db->table($this->table)->join('kategori', 'katid=prodid', 'left')->join('brand', 'brandid=prodbrand', 'left')->groupby('product.prodid');
+        $this->dt = $this->db->table($this->table)->join('kategori', 'katid=prodkat', 'left')->join('brand', 'brandid=prodbrand', 'left');
     }
     private function _get_datatables_query()
     {
