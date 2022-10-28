@@ -36,7 +36,7 @@
                                 <th>Brand</th>
                                 <th>Price</th>
                                 <th>Stock</th>
-                                <th>Aksi</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

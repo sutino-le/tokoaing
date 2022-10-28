@@ -256,6 +256,12 @@
                                         <p>Product</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>/product/detail" class="nav-link <?= ($submenu == 'productdet') ? 'active' : '' ?>">
+                                        <i class="fas fa-dolly nav-icon"></i>
+                                        <p>Product Detail</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

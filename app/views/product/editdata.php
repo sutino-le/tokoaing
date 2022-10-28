@@ -36,10 +36,10 @@
             <div class="card-body mt-1">
                 <div class="table-responsive">
 
-                    <form action="<?= base_url('product/simpan') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('product/update') ?>" method="post" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
 
-                        <input type="text">
+                        <input type="hidden" name="prodid" id="prodid" value="<?= $prodid ?>">
 
 
 
@@ -94,10 +94,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Gambar</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="prodgambar" name="prodgambar">
-                                <label class="custom-file-label" for="prodgambar">Choose file</label>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="<?= base_url() ?>/upload/<?= $prodgambar ?>" width="100px" height="100px">
+                                </div>
+                                <div class="col-9">
+                                    <label for="">Gambar</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="prodgambar" name="prodgambar">
+                                        <label class="custom-file-label" for="prodgambar">Choose file</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
