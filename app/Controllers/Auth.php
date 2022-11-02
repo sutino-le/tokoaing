@@ -31,14 +31,14 @@ class Auth extends BaseController
                     'label'     => 'Email',
                     'rules'     => 'required',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'password'    => [
-                    'label'     => 'Kata Sandi',
+                    'label'     => 'Password',
                     'rules'     => 'required',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -58,13 +58,13 @@ class Auth extends BaseController
                 if ($cekUser == null) {
                     $json = [
                         'error' => [
-                            'errEmail'     => 'Maaf user tidak terdaftar',
+                            'errEmail'     => 'Sorry, the user is not registered!!',
                         ]
                     ];
                 } else if ($cekUser['userlevel'] == '2') {
                     $json = [
                         'error' => [
-                            'errEmail'     => 'Maaf user tidak terdaftar',
+                            'errEmail'     => 'Sorry, the user is not registered!!',
                         ]
                     ];
                 } else {
@@ -80,12 +80,12 @@ class Auth extends BaseController
                         session()->set($simpan_session);
 
                         $json = [
-                            'sukses' => 'Anda berhasil login...'
+                            'sukses' => 'You have successfully logged in...'
                         ];
                     } else {
                         $json = [
                             'error' => [
-                                'errPassword'     => 'Maaf passwordword anda salah !!',
+                                'errPassword'     => 'Sorry, your password is wrong!!',
                             ]
                         ];
                     }
@@ -103,7 +103,7 @@ class Auth extends BaseController
             session()->destroy();
 
             $json = [
-                'sukses' => 'Anda berhasil logout...'
+                'sukses' => 'You have successfully logged out...'
             ];
 
             echo json_encode($json);
@@ -111,7 +111,7 @@ class Auth extends BaseController
     }
 
 
-    // untuk lupa kata sandi
+    // untuk lupa Password
     public function lupasandi()
     {
         if ($this->request->isAJAX()) {
@@ -126,7 +126,7 @@ class Auth extends BaseController
                     'label'     => 'Email',
                     'rules'     => 'required',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
             ]);
@@ -146,13 +146,13 @@ class Auth extends BaseController
                 if ($cekUser == null) {
                     $json = [
                         'error' => [
-                            'errEmail'         => 'Email belum terdaftar...',
+                            'errEmail'         => 'Email not registered...',
                         ]
                     ];
                 } else if ($cekUser['valuserstatus'] == "Progress") {
                     $json = [
                         'error' => [
-                            'errEmail'         => 'Email belum terverifikasi...',
+                            'errEmail'         => 'Email not verified...',
                         ]
                     ];
                 } else {
@@ -164,7 +164,7 @@ class Auth extends BaseController
 
                     $useranda = sha1($userid);
 
-                    $isiemail = "<h1>HI " . $usernama . " ...</h1><p>Ganti Password Anda<br><br>Kamu bisa klik tautan dibawah ini untuk mengganti Sandi Anda : <br>
+                    $isiemail = "<h1>HI " . $usernama . " ...</h1><p>Change Your Password<br><br>You can click the link below to change your password: <br>
                         http://192.168.1.99/toko-online/public/auth/ubahsandi/" . $useranda . "</p>";
 
 
@@ -172,14 +172,14 @@ class Auth extends BaseController
                     $email->setTo($userid);
                     $email->setFrom('sutino.skom@gmail.com', 'Sutino');
 
-                    $email->setSubject('Lupa Kata Sandi');
+                    $email->setSubject('Forgot the password');
 
                     $email->setMessage($isiemail);
 
 
                     if ($email->send()) {
                         $json = [
-                            'berhasil'        => 'Tautan berhasil dikirimkan ke email Anda, silahkan buka email Anda...'
+                            'berhasil'        => 'The link has been successfully sent to your email, please open your email...'
                         ];
                     }
                 }

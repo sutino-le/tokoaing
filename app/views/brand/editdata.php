@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             <label for="">Brand</label>
-                            <input type="text" name="brandnama" id="brandnama" class="form-control <?= ($validation->hasError('brandnama')) ? 'is-invalid' : '' ?>" value="<?= ($validation->hasError('brandnama')) ? old('brandnama')  :  $brandnama ?>" placeholder="Masukan Brand..." autocomplete="off">
+                            <input type="text" name="brandnama" id="brandnama" class="form-control <?= ($validation->hasError('brandnama')) ? 'is-invalid' : '' ?>" value="<?= ($validation->hasError('brandnama')) ? old('brandnama')  :  $brandnama ?>" placeholder="Enter Brand..." autocomplete="off">
 
                             <div class="invalid-feedback"><?= $validation->getError('brandnama') ?></div>
                         </div>
@@ -44,7 +44,7 @@
                                     <img src="<?= base_url() ?>/upload/<?= $brandgambar ?>" alt="<?= $brandgambar ?>" width="350px">
                                 </div>
                                 <div class="col-8">
-                                    <label for="">Gambar</label>
+                                    <label for="">Image</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="brandgambar" name="brandgambar">
                                         <label class="custom-file-label" for="brandgambar">Choose file</label>
@@ -55,8 +55,8 @@
 
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success">Simpan</button>
-                            <a href="<?= base_url() ?>/brand/index" class="btn btn-sm btn-danger u-inline">Batal</a>
+                            <button type="submit" class="btn btn-sm btn-success">Save</button>
+                            <a href="<?= base_url() ?>/brand/index" class="btn btn-sm btn-danger u-inline">Cancel</a>
                         </div>
                     </form>
 

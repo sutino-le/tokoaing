@@ -39,7 +39,7 @@
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Silahkan Login</p>
+                <p class="login-box-msg">Please Login</p>
 
                 <form action="<?= base_url() ?>/auth/login" class="formlogin">
                     <div class="input-group mb-3">
@@ -68,7 +68,7 @@
                 </form>
 
                 <p class="mb-1 mt-2">
-                    <a href="#" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#modalLupaSandi" id="tombolLupaSandi">Lupa Kata Sandi</a>
+                    <a href="#" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#modalLupaSandi" id="tombolLupaSandi">Forgot Password</a>
                 </p>
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLupaSandiLabel">Ganti Sandi</h5>
+                    <h5 class="modal-title" id="modalLupaSandiLabel">Change Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalLupaSandi">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -89,11 +89,11 @@
                 <div class="modal-body">
                     <form action="<?= base_url('auth/lupasandi') ?>" class="formlupasandi">
                         <div class="form-group">
-                            <label for="emailuser">Masukan Email :</label>
+                            <label for="emailuser">Enter Email :</label>
                             <input type="email" name="emailuser" class="form-control" id="emailuser" placeholder="Enter email" autocomplete="off">
                             <div class="invalid-feedback errorEmail"></div>
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary">Kirim Verifikasi</button>
+                        <button type="submit" class="btn btn-block btn-primary">Send Verification</button>
                     </form>
                 </div>
             </div>

@@ -18,14 +18,14 @@
                     <input type="hidden" name="useridlama" id="useridlama" value="<?= $userid ?>">
 
                     <div class="form-group">
-                        <label for="">User Nama</label>
+                        <label for="">Username</label>
                         <input type="text" name="usernama" id="usernama" value="<?= $usernama ?>" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="">Level</label>
                         <select name="userlevel" id="userlevel" class="form-control">
-                            <option value="" selected>Pilih Level</option>
+                            <option value="" selected>Select Level</option>
                             <option value=""></option>
                             <?php foreach ($datalevel as $rowlevel) : ?>
                                 <option value="<?= $rowlevel['levelid'] ?>" <?= ($rowlevel['levelid'] == $userlevel) ? 'selected' : '' ?>><?= $rowlevel['levelnama'] ?></option>
@@ -38,8 +38,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -76,7 +76,7 @@
                     if (response.sukses) {
                         $('#modalEdit').modal('hide');
                         swal.fire(
-                            'Berhasil',
+                            'Success',
                             response.sukses,
                             'success'
                         ).then((result) => {

@@ -17,7 +17,7 @@ class Level extends BaseController
     public function index()
     {
         $data = [
-            'title'      => 'Data Level',
+            'title'      => 'Level Data',
             'menu'      => 'master',
             'submenu'    => 'level',
             'actmenu'       => '',
@@ -39,7 +39,7 @@ class Level extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . $list->levelid . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->levelid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->levelid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
 
                 if ($list->userlevel == "") {
                     $tomboleditlevel = $tombolEdit;
@@ -85,7 +85,7 @@ class Level extends BaseController
                     'rules'     => 'required',
                     'label'     => 'Level Nama',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -105,7 +105,7 @@ class Level extends BaseController
                 ]);
 
                 $json = [
-                    'sukses'        => 'Data berhasil disimpan'
+                    'sukses'        => 'Data saved successfully...'
                 ];
             }
 
@@ -145,7 +145,7 @@ class Level extends BaseController
                     'rules'     => 'required',
                     'label'     => 'Level Nama',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -163,7 +163,7 @@ class Level extends BaseController
                 ]);
 
                 $json = [
-                    'sukses'        => 'Data berhasil dirubah'
+                    'sukses'        => 'Data changed successfully...'
                 ];
             }
 
@@ -177,7 +177,7 @@ class Level extends BaseController
         $this->modelLevel->delete($levelid);
 
         $json = [
-            'sukses' => 'Data berhasil dihapus'
+            'sukses' => 'Data deleted successfully...'
         ];
 
 

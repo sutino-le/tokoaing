@@ -20,7 +20,7 @@ class User extends BaseController
     public function index()
     {
         $data = [
-            'title'      => 'Data User',
+            'title'      => 'User Data',
             'menu'      => 'master',
             'submenu'    => 'user',
             'actmenu'       => '',
@@ -44,7 +44,7 @@ class User extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . $list->valuserid . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->valuserid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->valuserid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
 
                 if ($list->valuserstatus == "Progress") {
                     $tombolEditUser = "";
@@ -103,28 +103,28 @@ class User extends BaseController
                     'rules'     => 'required',
                     'label'     => 'User ID',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'usernama' => [
                     'rules'     => 'required',
-                    'label'     => 'User Nama',
+                    'label'     => 'Username',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'userpassword' => [
                     'rules'     => 'required',
                     'label'     => 'Password',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'userlevel' => [
                     'rules'     => 'required',
                     'label'     => 'Level',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -147,7 +147,7 @@ class User extends BaseController
                 if ($cekUser > 0) {
                     $json = [
                         'error' => [
-                            'errUserId'         => 'Email sudah terdaftar...',
+                            'errUserId'         => 'Email already registered...',
                         ]
                     ];
                 } else {
@@ -186,7 +186,7 @@ class User extends BaseController
 
             $useranda = sha1($userid);
 
-            $isiemail = "<h1>HI " . $usernama . " ...</h1><p>Selamat! Kamu sebentar lagi akan mengikat alamat email ini dengan akun TokoAing kamu.<br><br>Kamu bisa klik tautan dibawah ini untuk memverifikasi alamat email ini: <br>
+            $isiemail = "<h1>HI " . $usernama . " ...</h1><p>Congratulations! You will soon be binding this email address with your TokoAing account.<br><br>You can click the link below to verify this email address: <br>
                         http://192.168.1.99/toko-online/public/home/verifikasi/" . $useranda . "</p>";
 
 
@@ -194,18 +194,18 @@ class User extends BaseController
             $email->setTo($userid);
             $email->setFrom('sutino.skom@gmail.com', 'Sutino');
 
-            $email->setSubject('Verifikasi Akun');
+            $email->setSubject('Account Verification');
 
             $email->setMessage($isiemail);
 
 
             if ($email->send()) {
                 $json = [
-                    'berhasil'        => 'Verifikasi berhasil dikirimkan ke email Anda, silahkan verifikasi email...'
+                    'berhasil'        => 'Verification was successfully sent to your email, please verify your email...'
                 ];
             } else {
                 $json = [
-                    'gagal'        => 'Gagal mengirimkan verifikasi'
+                    'gagal'        => 'Failed to send verification'
                 ];
             }
 
@@ -248,7 +248,7 @@ class User extends BaseController
                     'rules'     => 'required',
                     'label'     => 'Level',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -274,7 +274,7 @@ class User extends BaseController
                 ]);
 
                 $json = [
-                    'sukses'        => 'Data berhasil dirubah'
+                    'sukses'        => 'Data changed successfully...'
                 ];
             }
 
@@ -290,7 +290,7 @@ class User extends BaseController
         $this->modelUserValidasi->delete($userid);
 
         $json = [
-            'sukses' => 'Data berhasil dihapus'
+            'sukses' => 'Data deleted successfully...'
         ];
 
 

@@ -8,23 +8,23 @@
                 <?= csrf_field(); ?>
 
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="staticBackdropLabel">Input Kategori</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Input Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="">Kategori</label>
-                        <input type="text" name="katnama" id="katnama" class="form-control" placeholder="Masukan Kategori..." autocomplete="off">
+                        <label for="">Category</label>
+                        <input type="text" name="katnama" id="katnama" class="form-control" placeholder="Enter Category..." autocomplete="off">
                         <div class="invalid-feedback errorKatNama"></div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -63,15 +63,15 @@
 
                     if (response.sukses) {
                         Swal.fire({
-                            title: 'Berhasil',
+                            title: 'Succeed',
                             text: response.sukses +
-                                ", Apakah ingin menambah Kategori ?",
+                                ", Do you want to add a Category?",
                             icon: 'success',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya!',
-                            cancelButtonText: 'Batal',
+                            confirmButtonText: 'Yes!',
+                            cancelButtonText: 'Cancel',
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $('#modalTambah').modal('show');

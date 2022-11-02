@@ -16,26 +16,26 @@
 
                     <div class="form-group">
                         <label for="">User ID</label>
-                        <input type="email" name="userid" id="userid" class="form-control" placeholder="Masukan User ID..." autocomplete="off">
+                        <input type="email" name="userid" id="userid" class="form-control" placeholder="Enter User ID..." autocomplete="off">
                         <div class="invalid-feedback errorUserId"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Nama Lengkap</label>
-                        <input type="text" name="usernama" id="usernama" class="form-control" placeholder="Masukan Nama Lengkap..." autocomplete="off">
+                        <label for="">Full name</label>
+                        <input type="text" name="usernama" id="usernama" class="form-control" placeholder="Enter Full name..." autocomplete="off">
                         <div class="invalid-feedback errorUserNama"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="text" name="userpassword" id="userpassword" class="form-control" placeholder="Masukan Password..." autocomplete="off">
+                        <input type="text" name="userpassword" id="userpassword" class="form-control" placeholder="Enter Password..." autocomplete="off">
                         <div class="invalid-feedback errorUserPassword"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="">Level</label>
                         <select name="userlevel" id="userlevel" class="form-control">
-                            <option value="" selected>Pilih Level</option>
+                            <option value="" selected>Select Level</option>
                             <option value=""></option>
                             <?php foreach ($datalevel as $rowlevel) : ?>
                                 <option value="<?= $rowlevel['levelid'] ?>"><?= $rowlevel['levelnama'] ?></option>
@@ -47,8 +47,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 

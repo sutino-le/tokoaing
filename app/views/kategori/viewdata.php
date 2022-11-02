@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-header">
                 <button type="button" class="btn btn-sm btn-primary" id="tambahKategori"><i class="fas fa-plus-circle"></i>
-                    Tambah Kategori</button>
+                    Add Category</button>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
@@ -31,8 +31,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>ID</th>
-                                <th>Kategori</th>
-                                <th>Aksi</th>
+                                <th>Category</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,14 +115,14 @@
 
     function hapus(katid) {
         Swal.fire({
-            title: 'Anda yakin?',
-            text: "ingin menghapus data ini...!",
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -131,7 +131,7 @@
                     success: function(response) {
                         if (response.sukses) {
                             swal.fire(
-                                'Berhasil',
+                                'Success',
                                 response.sukses,
                                 'success'
                             ).then((result) => {

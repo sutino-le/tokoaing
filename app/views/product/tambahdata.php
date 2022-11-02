@@ -31,7 +31,7 @@
         <div class="card">
             <div class="card-header">
 
-                <h5 class="modal-title" id="staticBackdropLabel">Input Produk</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Input Product</h5>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
@@ -42,21 +42,21 @@
 
 
                         <div class="form-group">
-                            <label for="">Produk</label>
-                            <input type="text" name="prodnama" id="prodnama" class="form-control <?= ($validation->hasError('prodnama')) ? 'is-invalid' : '' ?>" value="<?= old('prodnama') ?>" placeholder="Masukan Produk..." autocomplete="off">
+                            <label for="">Product</label>
+                            <input type="text" name="prodnama" id="prodnama" class="form-control <?= ($validation->hasError('prodnama')) ? 'is-invalid' : '' ?>" value="<?= old('prodnama') ?>" placeholder="Enter Product..." autocomplete="off">
                             <div class="invalid-feedback"><?= $validation->getError('prodnama') ?></div>
                         </div>
 
                         <div class="form-group">
                             <label for="">Type</label>
-                            <input type="text" name="prodtype" id="prodtype" class="form-control <?= ($validation->hasError('prodtype')) ? 'is-invalid' : '' ?>" value="<?= old('prodtype') ?>" placeholder="Masukan Type Product..." autocomplete="off">
+                            <input type="text" name="prodtype" id="prodtype" class="form-control <?= ($validation->hasError('prodtype')) ? 'is-invalid' : '' ?>" value="<?= old('prodtype') ?>" placeholder="Enter Type Product..." autocomplete="off">
                             <div class="invalid-feedback"><?= $validation->getError('prodtype') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Kategori</label>
+                            <label for="">Category</label>
                             <select name="prodkat" id="prodkat" class="form-control <?= ($validation->hasError('prodkat')) ? 'is-invalid' : '' ?>">
-                                <option value="" selected>Pilih Kategori</option>
+                                <option value="" selected>Select Category</option>
                                 <?php foreach ($tampilkategori as $rowkat) : ?>
                                     <option value="<?= $rowkat['katid'] ?>"><?= $rowkat['katnama'] ?></option>
                                 <?php endforeach ?>
@@ -76,25 +76,25 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Deskripsi</label>
+                            <label for="">Description</label>
                             <textarea name="proddeskripsi" id="proddeskripsi" class="form-control <?= ($validation->hasError('proddeskripsi')) ? 'is-invalid' : '' ?>"><?= old('proddeskripsi') ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('proddeskripsi') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Harga</label>
-                            <input type="number" name="prodharga" id="prodharga" class="form-control <?= ($validation->hasError('prodharga')) ? 'is-invalid' : '' ?>" value="<?= old('prodharga') ?>" placeholder="Masukan Harga..." autocomplete="off">
+                            <label for="">Price</label>
+                            <input type="number" name="prodharga" id="prodharga" class="form-control <?= ($validation->hasError('prodharga')) ? 'is-invalid' : '' ?>" value="<?= old('prodharga') ?>" placeholder="Enter Price..." autocomplete="off">
                             <div class="invalid-feedback"><?= $validation->getError('prodharga') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Stok</label>
-                            <input type="number" name="prodstock" id="prodstock" class="form-control <?= ($validation->hasError('prodstock')) ? 'is-invalid' : '' ?>" value="<?= old('prodstock') ?>" placeholder="Masukan Stok..." autocomplete="off">
+                            <label for="">Stock</label>
+                            <input type="number" name="prodstock" id="prodstock" class="form-control <?= ($validation->hasError('prodstock')) ? 'is-invalid' : '' ?>" value="<?= old('prodstock') ?>" placeholder="Enter Stock..." autocomplete="off">
                             <div class="invalid-feedback"><?= $validation->getError('prodstock') ?></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Gambar</label>
+                            <label for="">Image</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="prodgambar" name="prodgambar">
                                 <label class="custom-file-label" for="prodgambar">Choose file</label>
@@ -103,8 +103,8 @@
 
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success">Simpan</button>
-                            <a href="<?= base_url() ?>/product/index" class="btn btn-sm btn-danger u-inline">Batal</a>
+                            <button type="submit" class="btn btn-sm btn-success">Save</button>
+                            <a href="<?= base_url() ?>/product/index" class="btn btn-sm btn-danger u-inline">Cancel</a>
                         </div>
                     </form>
 
@@ -120,7 +120,7 @@
 
 <script>
     $("textarea#proddeskripsi").summernote({
-        placeholder: "Deskripsi",
+        placeholder: "Enter Description...",
         tabsize: 2,
         height: 100,
         toolbar: [

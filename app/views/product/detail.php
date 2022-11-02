@@ -30,7 +30,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Product</th>
-                                <th>Image Detail</th>
+                                <th>Image Details</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

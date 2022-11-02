@@ -10,6 +10,7 @@ use App\Models\ModelLevels;
 use App\Models\ModelPerusahaan;
 use App\Models\ModelProduct;
 use App\Models\ModelProductDetail;
+use App\Models\ModelServis;
 use App\Models\ModelUsers;
 use App\Models\ModelUserValidasi;
 use Config\Services;
@@ -234,12 +235,12 @@ class Home extends BaseController
                 'peruemail'             => 'Default',
                 'peruicon'              => '',
                 'perufoto'              => 'Default',
-                'databrand'            => 'Default',
+                'databrand'             => 'Default',
                 'prodid'                => 'Default',
                 'prodnama'              => 'Default',
                 'prodtype'              => 'Default',
                 'prodkat'               => 'Default',
-                'prodbrand'            => 'Default',
+                'prodbrand'             => 'Default',
                 'proddeskripsi'         => 'Default',
                 'prodharga'             => 'Default',
                 'prodstock'             => 'Default',
@@ -277,7 +278,7 @@ class Home extends BaseController
                 'peruemail'         => $rowPeru['peruemail'],
                 'peruicon'          => $rowPeru['peruicon'],
                 'perufoto'          => $rowPeru['perufoto'],
-                'databrand'        => $cekBrand,
+                'databrand'         => $cekBrand,
             ];
         } else {
             $data = [
@@ -291,7 +292,7 @@ class Home extends BaseController
                 'peruemail'         => 'Default',
                 'peruicon'          => '',
                 'perufoto'          => 'Default',
-                'databrand'        => 'Default',
+                'databrand'         => 'Default',
             ];
         }
 
@@ -341,6 +342,83 @@ class Home extends BaseController
         }
 
         return view('contact', $data);
+    }
+
+    // Pesan dari customer
+    public function simpanpesan()
+    {
+        if ($this->request->isAJAX()) {
+
+            $validation = \Config\Services::validation();
+            $valid = $this->validate([
+                'sernama' => [
+                    'rules'     => 'required',
+                    'label'     => 'Nama',
+                    'errors'    => [
+                        'required'  => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'seremail' => [
+                    'rules'     => 'required|valid_email',
+                    'label'     => 'Email',
+                    'errors'    => [
+                        'required'      => '{field} tidak boleh kosong',
+                        'valid_email'   => '{field} tidak valid'
+                    ]
+                ],
+                'sersubject' => [
+                    'rules'     => 'required',
+                    'label'     => 'Judul',
+                    'errors'    => [
+                        'required'  => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'serisi' => [
+                    'rules'     => 'required',
+                    'label'     => 'Pesan',
+                    'errors'    => [
+                        'required'  => '{field} tidak boleh kosong'
+                    ]
+                ],
+            ]);
+
+
+            if (!$valid) {
+                $json = [
+                    'error' => [
+                        'errSernama'     => $validation->getError('sernama'),
+                        'errSeremail'    => $validation->getError('seremail'),
+                        'errSersubject'  => $validation->getError('sersubject'),
+                        'errSerisi'      => $validation->getError('serisi'),
+                    ]
+                ];
+            } else {
+
+                $sernama        = $this->request->getPost('sernama');
+                $seremail       = $this->request->getPost('seremail');
+                $sersubject     = $this->request->getPost('sersubject');
+                $serisi         = $this->request->getPost('serisi');
+
+                $modelServis = new ModelServis();
+
+                $modelServis->insert([
+                    'serid'         => '',
+                    'sernama'       => $sernama,
+                    'seremail'      => $seremail,
+                    'serdate'       => date('Y-m-d H:i:s'),
+                    'sersubject'    => $sersubject,
+                    'serisi'        => $serisi,
+                    'serstatus'     => 'Progres',
+                ]);
+
+                $json = [
+                    'sukses'        => 'Pesan berhasil dikirim...'
+                ];
+            }
+
+
+            echo json_encode($json);
+        }
     }
 
     // modal tambah keranjang

@@ -8,7 +8,7 @@
                 <?= csrf_field(); ?>
 
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Perusahaan</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Company</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -18,52 +18,52 @@
                     <input type="hidden" name="peruidlama" id="peruidlama" value="<?= $peruid ?>">
 
                     <div class="form-group">
-                        <label for="">Nama Perusahaan</label>
-                        <input type="text" name="perunama" id="perunama" value="<?= $perunama ?>" class="form-control" placeholder="Masukan Nama Perusahaan..." autocomplete="off">
+                        <label for="">Company</label>
+                        <input type="text" name="perunama" id="perunama" value="<?= $perunama ?>" class="form-control" placeholder="Enter Company..." autocomplete="off">
                         <div class="invalid-feedback errorPeruNama"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Alamat Perusahaan</label>
+                        <label for="">Address</label>
                         <textarea name="perualamat" id="perualamat" cols="10" rows="2" class="form-control"><?= $perualamat ?></textarea>
                         <div class="invalid-feedback errorPeruAlamat"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Link Map Perusahaan</label>
+                        <label for="">Company Map Link</label>
                         <textarea name="perualamatlink" id="perualamatlink" cols="10" rows="5" class="form-control"><?= $perualamatlink ?></textarea>
                         <div class="invalid-feedback errorPeruAlamatLink"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Telp Perusahaan</label>
-                        <input type="text" name="perutelp" id="perutelp" value="<?= $perutelp ?>" class="form-control" placeholder="Masukan Telp. Perusahaan..." autocomplete="off">
+                        <label for="">Phone</label>
+                        <input type="text" name="perutelp" id="perutelp" value="<?= $perutelp ?>" class="form-control" placeholder="Enter Phone..." autocomplete="off">
                         <div class="invalid-feedback errorPeruTelp"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">WhatsApp Perusahaan</label>
-                        <input type="text" name="peruwa" id="peruwa" value="<?= $peruwa ?>" class="form-control" placeholder="Masukan WhatsApp Perusahaan..." autocomplete="off">
+                        <label for="">WhatsApp</label>
+                        <input type="text" name="peruwa" id="peruwa" value="<?= $peruwa ?>" class="form-control" placeholder="Enter WhatsApp..." autocomplete="off">
                         <div class="invalid-feedback errorPeruWa"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Fax Perusahaan</label>
-                        <input type="text" name="perufax" id="perufax" value="<?= $perufax ?>" class="form-control" placeholder="Masukan Fax Perusahaan..." autocomplete="off">
+                        <label for="">Fax</label>
+                        <input type="text" name="perufax" id="perufax" value="<?= $perufax ?>" class="form-control" placeholder="Enter Fax..." autocomplete="off">
                         <div class="invalid-feedback errorPeruFax"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Email Perusahaan</label>
-                        <input type="email" name="peruemail" id="peruemail" value="<?= $peruemail ?>" class="form-control" placeholder="Masukan Email Perusahaan..." autocomplete="off">
+                        <label for="">Email</label>
+                        <input type="email" name="peruemail" id="peruemail" value="<?= $peruemail ?>" class="form-control" placeholder="Enter Email..." autocomplete="off">
                         <div class="invalid-feedback errorPeruEmail"></div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -83,7 +83,7 @@
                 <?= csrf_field(); ?>
 
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Gambar</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Image</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -93,7 +93,7 @@
                     <input type="hidden" name="peruidlama" id="peruidlama" value="<?= $peruid ?>">
 
                     <div class="form-group">
-                        <label for="">Icon Perusahaan</label>
+                        <label for="">Icon</label>
                         <div class="row">
                             <div class="col-2">
                                 <img src="<?= base_url() ?>/upload/<?= $peruicon ?>" alt="<?= $peruicon ?>" width="30px" height="30px">
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Foto Perusahaan</label>
+                        <label for="">Image</label>
                         <div class="row">
                             <div class="col-2">
                                 <img src="<?= base_url() ?>/upload/<?= $perufoto ?>" alt="<?= $perufoto ?>" width="30px" height="30px">
@@ -119,8 +119,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -189,7 +189,7 @@
                     if (response.sukses) {
                         $('#modalEdit').modal('hide');
                         swal.fire(
-                            'Berhasil',
+                            'Success',
                             response.sukses,
                             'success'
                         ).then((result) => {

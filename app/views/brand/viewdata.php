@@ -20,8 +20,8 @@
 
         <div class="card">
             <div class="card-header">
-                <a href="<?= base_url() ?>/brand/formtambah" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i>
-                    Tambah Brand</a>
+                <a href="<?= base_url() ?>/brand/formtambah" class="btn btn-sm btn-primary" title="Add Brand"><i class="fas fa-plus-circle"></i>
+                    Add Brand</a>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
@@ -32,8 +32,8 @@
                                 <th>No</th>
                                 <th>ID</th>
                                 <th>Brand</th>
-                                <th>Gambar</th>
-                                <th>Aksi</th>
+                                <th>Image</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,14 +82,14 @@
 
     function hapus(brandid) {
         Swal.fire({
-            title: 'Anda yakin?',
-            text: "ingin menghapus data ini...!",
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -98,7 +98,7 @@
                     success: function(response) {
                         if (response.sukses) {
                             swal.fire(
-                                'Berhasil',
+                                'Success',
                                 response.sukses,
                                 'success'
                             ).then((result) => {

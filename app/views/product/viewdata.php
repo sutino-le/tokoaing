@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-header">
                 <a href="<?= base_url() ?>/product/formtambah" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i>
-                    Tambah Product</a>
+                    Add Product</a>
             </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
@@ -37,6 +37,7 @@
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Action</th>
+                                <th>Details Image</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,14 +86,14 @@
 
     function hapus(prodid) {
         Swal.fire({
-            title: 'Anda yakin?',
-            text: "ingin menghapus data ini...!",
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -101,7 +102,7 @@
                     success: function(response) {
                         if (response.sukses) {
                             swal.fire(
-                                'Berhasil',
+                                'Success',
                                 response.sukses,
                                 'success'
                             ).then((result) => {

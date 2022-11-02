@@ -383,7 +383,7 @@
                                                         <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#ffffff;border-radius:4px" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" role="presentation">
                                                             <tr style="border-collapse:collapse">
                                                                 <td align="center" style="Margin:0;padding-bottom:5px;padding-left:30px;padding-right:30px;padding-top:35px">
-                                                                    <h1 style="Margin:0;line-height:58px;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;font-size:48px;font-style:normal;font-weight:normal;color:#111111">Ganti Kata Sandi ?</h1>
+                                                                    <h1 style="Margin:0;line-height:58px;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;font-size:48px;font-style:normal;font-weight:normal;color:#111111">Change Password ?</h1>
                                                                 </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">
@@ -417,7 +417,7 @@
                                                         <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#ffffff" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" role="presentation">
                                                             <tr style="border-collapse:collapse">
                                                                 <td class="es-m-txt-l" bgcolor="#ffffff" align="left" style="Margin:0;padding-bottom:15px;padding-top:20px;padding-left:30px;padding-right:30px">
-                                                                    <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#666666;font-size:18px">Menyetel ulang kata sandi Anda mudah. Cukup tekan tombol di bawah dan ikuti petunjuknya.</p>
+                                                                    <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#666666;font-size:18px">Resetting your password is easy. Just press the button below and follow the prompts.</p>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -433,7 +433,7 @@
                                                     <td valign="top" align="center" style="padding:0;Margin:0;width:540px">
                                                         <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tr style="border-collapse:collapse">
-                                                                <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#7C72DC;background:#7C72DC;border-width:1px;display:inline-block;border-radius:2px;width:auto"><a href="#" class="es-button" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#7C72DC;border-width:15px 25px 15px 25px;display:inline-block;background:#7C72DC;border-radius:2px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center" data-toggle="modal" data-target="#staticBackdrop">Ganti Sandi</a></span></td>
+                                                                <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#7C72DC;background:#7C72DC;border-width:1px;display:inline-block;border-radius:2px;width:auto"><a href="#" class="es-button" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#7C72DC;border-width:15px 25px 15px 25px;display:inline-block;background:#7C72DC;border-radius:2px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center" data-toggle="modal" data-target="#staticBackdrop">Change Password</a></span></td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -510,7 +510,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Rubah Sandi </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -520,24 +520,24 @@
                     <form action="<?= base_url('home/prosesubahsandi') ?>" class="formubahsandi">
 
                         <div class="form-group">
-                            <label for="">Nama Lengkap</label>
+                            <label for="">Full Name</label>
                             <input type="text" name="usernama" id="usernama" class="form-control" value="<?= $usernama ?>" readonly>
                             <input type="hidden" name="userid" id="userid" value="<?= $userid ?>">
                         </div>
 
                         <div class="form-group">
-                            <label for="">Sandi Baru</label>
-                            <input type="password" name="userpassword" id="userpassword" class="form-control" placeholder="Masukan Sandi Baru..." autocomplete="off">
+                            <label for="">New Password</label>
+                            <input type="password" name="userpassword" id="userpassword" class="form-control" placeholder="Enter New Password..." autocomplete="off">
                             <div class="invalid-feedback errorUserPassword"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Ulang Sandi</label>
-                            <input type="password" name="ulangpassword" id="ulangpassword" class="form-control" placeholder="Masukan Ulang Sandi..." autocomplete="off">
+                            <label for="">Repeat Password</label>
+                            <input type="password" name="ulangpassword" id="ulangpassword" class="form-control" placeholder="Enter Repeat Password..." autocomplete="off">
                             <div class="invalid-feedback errorUserUlangPassword"></div>
                         </div>
 
-                        <div class="row mb-3 px-3"> <button type="submit" class="btn btn-primary btn-block text-center">Ubah Sandi</button> </div>
+                        <div class="row mb-3 px-3"> <button type="submit" class="btn btn-primary btn-block text-center">Change Password</button> </div>
 
 
                     </form>

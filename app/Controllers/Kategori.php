@@ -19,7 +19,7 @@ class Kategori extends BaseController
     public function index()
     {
         $data = [
-            'title'      => 'Data Kategori',
+            'title'      => 'Category Data',
             'menu'      => 'produk',
             'submenu'    => 'kategori',
             'actmenu'       => '',
@@ -43,7 +43,7 @@ class Kategori extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . $list->katid . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->katid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->katid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
 
                 if ($list->prodkat == "") {
                     $tomboleditkat = $tombolEdit;
@@ -87,9 +87,9 @@ class Kategori extends BaseController
             $valid = $this->validate([
                 'katnama' => [
                     'rules'     => 'required',
-                    'label'     => 'Kategori',
+                    'label'     => 'Category',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -109,7 +109,7 @@ class Kategori extends BaseController
                 ]);
 
                 $json = [
-                    'sukses'        => 'Data berhasil disimpan'
+                    'sukses'        => 'Data saved successfully'
                 ];
             }
 
@@ -149,7 +149,7 @@ class Kategori extends BaseController
                     'rules'     => 'required',
                     'label'     => 'Kategori',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ]
             ]);
@@ -167,7 +167,7 @@ class Kategori extends BaseController
                 ]);
 
                 $json = [
-                    'sukses'        => 'Data berhasil dirubah'
+                    'sukses'        => 'Data changed successfully...'
                 ];
             }
 
@@ -181,7 +181,7 @@ class Kategori extends BaseController
         $this->modelKategori->delete($katid);
 
         $json = [
-            'sukses' => 'Data berhasil dihapus'
+            'sukses' => 'Data deleted successfully...'
         ];
 
 

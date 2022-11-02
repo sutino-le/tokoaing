@@ -58,12 +58,12 @@
                             <figure>
                                 <div class="row">
                                     <div class="col">
-                                        <img src="<?= base_url() ?>/upload/<?= $tampildata['peruicon'] ?>" alt="Icon Perusahaan" class="img-fluid m-2" width="200px" height="200px" title="Icon Perusahaan">
-                                        <figcaption>Icon Perusahaan</figcaption>
+                                        <img src="<?= base_url() ?>/upload/<?= $tampildata['peruicon'] ?>" alt="Icon" class="img-fluid m-2" width="200px" height="200px" title="Icon">
+                                        <figcaption>Icon</figcaption>
                                     </div>
                                     <div class="col">
-                                        <img src="<?= base_url() ?>/upload/<?= $tampildata['perufoto'] ?>" alt="Foto Perusahaan" class="img-fluid m-2" width="200px" height="200px" title="Foto Perusahaan">
-                                        <figcaption>Foto Perusahaan</figcaption>
+                                        <img src="<?= base_url() ?>/upload/<?= $tampildata['perufoto'] ?>" alt="Image" class="img-fluid m-2" width="200px" height="200px" title="Image">
+                                        <figcaption>Image</figcaption>
                                     </div>
                                 </div>
                             </figure>

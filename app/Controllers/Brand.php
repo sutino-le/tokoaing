@@ -20,7 +20,7 @@ class Brand extends BaseController
     public function index()
     {
         $data = [
-            'title'      => 'Data Brand',
+            'title'      => 'Brand Data',
             'menu'      => 'produk',
             'submenu'    => 'brand',
             'actmenu'       => '',
@@ -44,7 +44,7 @@ class Brand extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . sha1($list->brandid) . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->brandid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->brandid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
 
                 if ($list->prodbrand == "") {
                     $tomboleditbrand = $tombolEdit;
@@ -74,7 +74,7 @@ class Brand extends BaseController
     public function formtambah()
     {
         $data = [
-            'title'         => 'Data Brand',
+            'title'         => 'Brand Data',
             'menu'          => 'produk',
             'submenu'       => 'brand',
             'actmenu'       => '',
@@ -92,7 +92,7 @@ class Brand extends BaseController
                 'rules'         => 'required',
                 'label'         => 'Brand',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
         ])) {
@@ -132,7 +132,7 @@ class Brand extends BaseController
         $cekData = $modelBrand->cekBrand($brandid)->getRowArray();
 
         $data = [
-            'title'         => 'Data Brand',
+            'title'         => 'Brand Data',
             'menu'          => 'produk',
             'submenu'       => 'brand',
             'actmenu'       => '',
@@ -154,7 +154,7 @@ class Brand extends BaseController
                 'rules'         => 'required',
                 'label'         => 'Brand',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
         ])) {
@@ -211,7 +211,7 @@ class Brand extends BaseController
         $this->modelBrand->delete($brandid);
 
         $json = [
-            'sukses' => 'Data berhasil dihapus'
+            'sukses' => 'Data deleted successfully'
         ];
 
 

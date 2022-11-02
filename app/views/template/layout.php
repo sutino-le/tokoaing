@@ -83,59 +83,24 @@
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
+                        <i class="fas fa-envelope-square"></i>
+                        <span class="badge badge-danger navbar-badge" id="jumlahPesan">3</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="<?= base_url() ?>/assets_admin/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    <div class="row tampilMessage">
+
+                                    </div>
                                 </div>
                             </div>
                             <!-- Message End -->
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="<?= base_url() ?>/assets_admin/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="<?= base_url() ?>/assets_admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+
+                        <a href="<?= base_url() ?>/servis/index" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
                 </li>
                 <!-- Notifications Dropdown Menu -->
@@ -211,19 +176,19 @@
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>/level/index" class="nav-link <?= ($submenu == 'level') ? 'active' : '' ?>">
                                         <i class="fas fa-users nav-icon"></i>
-                                        <p>Level</p>
+                                        <p>Levels</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>/user/index" class="nav-link <?= ($submenu == 'user') ? 'active' : '' ?>">
                                         <i class="fas fa-user-cog nav-icon"></i>
-                                        <p>User</p>
+                                        <p>Users</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>/perusahaan/index" class="nav-link <?= ($submenu == 'perusahaan') ? 'active' : '' ?>">
                                         <i class="fas fa-city nav-icon"></i>
-                                        <p>Perusahaan</p>
+                                        <p>Company</p>
                                     </a>
                                 </li>
                             </ul>
@@ -233,7 +198,7 @@
                             <a href="#" class="nav-link <?= ($menu == 'produk') ? 'active' : '' ?>">
                                 <i class="fas fa-database"></i>
                                 <p>
-                                    Produk
+                                    Product
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -241,7 +206,7 @@
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>/kategori/index" class="nav-link <?= ($submenu == 'kategori') ? 'active' : '' ?>">
                                         <i class="fas fa-project-diagram nav-icon"></i>
-                                        <p>Kategori</p>
+                                        <p>Category</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -258,12 +223,31 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>/product/detail" class="nav-link <?= ($submenu == 'productdet') ? 'active' : '' ?>">
-                                        <i class="fas fa-dolly nav-icon"></i>
-                                        <p>Product Detail</p>
+                                        <i class="far fa-list-alt nav-icon"></i>
+                                        <p>Product Details</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item <?= ($menu == 'servis') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link <?= ($menu == 'servis') ? 'active' : '' ?>">
+                                <i class="fas fa-envelope-square"></i>
+                                <p>
+                                    Service
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>/servis/index" class="nav-link <?= ($submenu == 'message') ? 'active' : '' ?>">
+                                        <i class="fas fa-envelope-open-text nav-icon"></i>
+                                        <p>Message</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -388,6 +372,27 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <script>
+        function tampilMessage() {
+            $.ajax({
+                url: "<?= base_url() ?>/servis/tampilMessage",
+                dataType: "json",
+                success: function(response) {
+                    if (response.data) {
+                        $('.tampilMessage').html(response.data);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + '\n' + thrownError);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            tampilMessage();
         });
     </script>
 </body>

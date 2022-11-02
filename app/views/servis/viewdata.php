@@ -19,21 +19,17 @@
     <div class="card-body">
 
         <div class="card">
-            <div class="card-header">
-                <button type="button" class="btn btn-sm btn-primary" id="tambahUsers"><i class="fas fa-plus-circle"></i>
-                    Add User</button>
-            </div>
             <div class="card-body mt-1">
                 <div class="table-responsive">
 
-                    <table style="width: 100%;" id="dataUsers" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
+                    <table style="width: 100%;" id="dataMessage" class="table table-sm table-bordered table-hover dataTable dtr-inline collapsed">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>User ID</th>
-                                <th>Username</th>
-                                <th>Level</th>
-                                <th>Status</th>
+                                <th>From</th>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Message</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -55,35 +51,35 @@
 <div class="viewmodal" style="display: none;"></div>
 
 <script>
-    function listDataUsers() {
-        var table = $('#dataUsers').dataTable({
+    function listDataMessage() {
+        var table = $('#dataMessage').dataTable({
             destroy: true,
             "processing": true,
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= base_url() ?>/user/listData",
+                "url": "<?= base_url() ?>/servis/listData",
                 "type": "POST",
             },
             "colomnDefs": [{
-                "targets": [0, 5],
+                "targets": [0, 4],
                 "orderable": false,
             }, ],
         });
     }
 
     $(document).ready(function() {
-        listDataUsers();
+        listDataMessage();
     });
 
 
     $(document).ready(function() {
 
-        $('#tambahUsers').click(function(e) {
+        $('#tambahLevels').click(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
-                url: "<?= base_url() ?>/user/formtambah",
+                url: "<?= base_url() ?>/level/formtambah",
                 dataType: "json",
                 success: function(response) {
                     if (response.data) {
@@ -99,10 +95,10 @@
 
     });
 
-    function edit(userid) {
+    function edit(levelid) {
         $.ajax({
             type: "post",
-            url: "<?= base_url() ?>/user/formedit/" + userid,
+            url: "<?= base_url() ?>/level/formedit/" + levelid,
             dataType: "json",
             success: function(response) {
                 if (response.data) {
@@ -116,7 +112,7 @@
         });
     }
 
-    function hapus(userid) {
+    function hapus(levelid) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -129,7 +125,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?= base_url() ?>/user/hapus/" + userid,
+                    url: "<?= base_url() ?>/level/hapus/" + levelid,
                     dataType: "json",
                     success: function(response) {
                         if (response.sukses) {
@@ -146,12 +142,8 @@
                         alert(xhr.status + '\n' + thrownError);
                     }
                 });
-            } else {
-                window.location.reload();
             }
         })
-
-
     }
 </script>
 

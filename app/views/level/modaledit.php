@@ -8,7 +8,7 @@
                 <?= csrf_field(); ?>
 
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Level</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Levels</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -18,16 +18,16 @@
                     <input type="hidden" name="levelidlama" id="levelidlama" value="<?= $levelid ?>">
 
                     <div class="form-group">
-                        <label for="">Level Nama</label>
-                        <input type="text" name="levelnama" id="levelnama" value="<?= $levelnama ?>" class="form-control" placeholder="Masukan Level Nama...">
+                        <label for="">Levels</label>
+                        <input type="text" name="levelnama" id="levelnama" value="<?= $levelnama ?>" class="form-control" placeholder="Enter Levels...">
                         <div class="invalid-feedback errorLevelNama"></div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -68,7 +68,7 @@
                     if (response.sukses) {
                         $('#modalEdit').modal('hide');
                         swal.fire(
-                            'Berhasil',
+                            'Success',
                             response.sukses,
                             'success'
                         ).then((result) => {

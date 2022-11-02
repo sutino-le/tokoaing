@@ -20,7 +20,7 @@ class Perusahaan extends BaseController
         $modelPerusahaan = new ModelPerusahaan();
 
         $data = [
-            'title'         => 'Data Perusahaan',
+            'title'         => 'Company Data',
             'menu'          => 'master',
             'submenu'       => 'perusahaan',
             'actmenu'       => '',
@@ -64,37 +64,37 @@ class Perusahaan extends BaseController
             $valid = $this->validate([
                 'perunama' => [
                     'rules'     => 'required',
-                    'label'     => 'Nama Perusahaan',
+                    'label'     => 'Company',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'perualamat' => [
                     'rules'     => 'required',
-                    'label'     => 'Alamat Perusahaan',
+                    'label'     => 'Address',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'perutelp' => [
                     'rules'     => 'required',
-                    'label'     => 'Telp Perusahaan',
+                    'label'     => 'Phone',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'peruwa' => [
                     'rules'     => 'required',
-                    'label'     => 'WhatsApp Perusahaan',
+                    'label'     => 'WhatsApp',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
                 'peruemail' => [
                     'rules'     => 'required',
-                    'label'     => 'Email Perusahaan',
+                    'label'     => 'Email',
                     'errors'    => [
-                        'required'  => '{field} tidak boleh kosong'
+                        'required'  => '{field} can not be empty'
                     ]
                 ],
             ]);
@@ -167,7 +167,7 @@ class Perusahaan extends BaseController
 
 
                 $json = [
-                    'sukses'        => 'Data berhasil disimpan'
+                    'sukses'        => 'Data saved successfully...'
                 ];
             }
 
@@ -259,7 +259,7 @@ class Perusahaan extends BaseController
 
 
         $data = [
-            'title'         => 'Data Perusahaan',
+            'title'         => 'Company Data',
             'menu'          => 'master',
             'submenu'       => 'perusahaan',
             'actmenu'       => '',

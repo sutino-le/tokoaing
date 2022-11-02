@@ -14,4 +14,9 @@ class ModelProductDetail extends Model
     {
         return $this->table('productdetail')->where('detprodid', $id)->get();
     }
+
+    public function hitungJumlahRow($id)
+    {
+        return $this->table('productdetail')->where('detprodid', $id)->get();
+    }
 }

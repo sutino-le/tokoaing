@@ -15,16 +15,16 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="">Level Nama</label>
-                        <input type="text" name="levelnama" id="levelnama" class="form-control" placeholder="Masukan Level Nama..." autocomplete="off">
+                        <label for="">Levels</label>
+                        <input type="text" name="levelnama" id="levelnama" class="form-control" placeholder="Enter Levels..." autocomplete="off">
                         <div class="invalid-feedback errorLevelNama"></div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Simpan</button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="tombolsimpan" autocomplete="off">Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="batal">Cancel</button>
                 </div>
 
 
@@ -63,15 +63,15 @@
 
                     if (response.sukses) {
                         Swal.fire({
-                            title: 'Berhasil',
+                            title: 'Succeed',
                             text: response.sukses +
-                                ", Apakah ingin menambah Levels ?",
+                                ", Do you want to add Levels?",
                             icon: 'success',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya!',
-                            cancelButtonText: 'Batal',
+                            confirmButtonText: 'Yes!',
+                            cancelButtonText: 'Cancel',
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $('#modalTambah').modal('show');

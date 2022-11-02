@@ -27,7 +27,7 @@ class Product extends BaseController
     public function index()
     {
         $data = [
-            'title'      => 'Data Product',
+            'title'      => 'Product Data',
             'menu'      => 'produk',
             'submenu'    => 'product',
             'actmenu'       => '',
@@ -51,8 +51,13 @@ class Product extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . sha1($list->prodid) . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->prodid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
-                $tambahDetail = "<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"tambahdetail('" . $list->prodid . "')\" title=\"Tambah Detail Gambar\"><i class='fas fa-plus'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->prodid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
+                $tambahDetail = "<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"tambahdetail('" . $list->prodid . "')\" title=\"Add Details Image\"><i class='fas fa-plus'></i></button>";
+
+                $id = $list->prodid;
+
+                $modelDetail = new ModelProductDetail();
+                $cekRow = $modelDetail->hitungJumlahRow($id)->getNumRows();
 
                 $row[] = $no;
                 $row[] = $list->prodnama;
@@ -62,6 +67,7 @@ class Product extends BaseController
                 $row[] = $list->prodharga;
                 $row[] = $list->prodstock;
                 $row[] = $tombolEdit . ' ' . $tombolHapus . ' ' . $tambahDetail;
+                $row[] = $cekRow;
                 $data[] = $row;
             }
             $output = [
@@ -86,7 +92,7 @@ class Product extends BaseController
         $this->modelProduct->delete($prodid);
 
         $json = [
-            'sukses' => 'Data berhasil dihapus'
+            'sukses' => 'Data deleted successfully...'
         ];
 
 
@@ -96,7 +102,7 @@ class Product extends BaseController
     public function formtambah()
     {
         $data = [
-            'title'             => 'Data Produk',
+            'title'             => 'Product Data',
             'menu'              => 'produk',
             'submenu'           => 'product',
             'actmenu'           => '',
@@ -114,51 +120,51 @@ class Product extends BaseController
         if (!$this->validate([
             'prodnama'     => [
                 'rules'         => 'required',
-                'label'         => 'Produk',
+                'label'         => 'Product',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodtype'     => [
                 'rules'         => 'required',
                 'label'         => 'Type',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodkat'     => [
                 'rules'         => 'required',
-                'label'         => 'Kategori',
+                'label'         => 'Category',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodbrand'     => [
                 'rules'         => 'required',
                 'label'         => 'Brand',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'proddeskripsi'     => [
                 'rules'         => 'required',
-                'label'         => 'Deskripsi',
+                'label'         => 'Description',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodharga'     => [
                 'rules'         => 'required',
-                'label'         => 'Harga',
+                'label'         => 'Price',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodstock'     => [
                 'rules'         => 'required',
-                'label'         => 'Stok',
+                'label'         => 'Stock',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
         ])) {
@@ -210,7 +216,7 @@ class Product extends BaseController
         $cekData = $modelProduct->cekProduct($prodid)->getRowArray();
 
         $data = [
-            'title'             => 'Data Produk',
+            'title'             => 'Product Data',
             'menu'              => 'produk',
             'submenu'           => 'product',
             'actmenu'           => '',
@@ -236,51 +242,51 @@ class Product extends BaseController
         if (!$this->validate([
             'prodnama'     => [
                 'rules'         => 'required',
-                'label'         => 'Produk',
+                'label'         => 'Product',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodtype'     => [
                 'rules'         => 'required',
                 'label'         => 'Type',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodkat'     => [
                 'rules'         => 'required',
-                'label'         => 'Kategori',
+                'label'         => 'Category',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodbrand'     => [
                 'rules'         => 'required',
                 'label'         => 'Brand',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'proddeskripsi'     => [
                 'rules'         => 'required',
-                'label'         => 'Deskripsi',
+                'label'         => 'Description',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodharga'     => [
                 'rules'         => 'required',
-                'label'         => 'Harga',
+                'label'         => 'Price',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
             'prodstock'     => [
                 'rules'         => 'required',
-                'label'         => 'Stok',
+                'label'         => 'Stock',
                 'errors'        => [
-                    'required'      => '{field} tidak boleh kosong'
+                    'required'      => '{field} can not be empty'
                 ]
             ],
         ])) {
@@ -345,7 +351,7 @@ class Product extends BaseController
     public function detail()
     {
         $data = [
-            'title'         => 'Data Product',
+            'title'         => 'Product Data',
             'menu'          => 'produk',
             'submenu'       => 'productdet',
             'actmenu'       => '',
@@ -369,7 +375,9 @@ class Product extends BaseController
                 $row = [];
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . sha1($list->detid) . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
-                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->detid . "')\" title=\"Hapus\"><i class='fas fa-trash-alt'></i></button>";
+                $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->detid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
+
+
 
                 $row[] = $no;
                 $row[] = $list->prodnama;
