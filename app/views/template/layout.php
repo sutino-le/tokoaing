@@ -82,9 +82,10 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
+                    <input type="hidden" name="statuspesan" value="Progres">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="fas fa-envelope-square"></i>
-                        <span class="badge badge-danger navbar-badge" id="jumlahPesan">3</span>
+                        <span class="badge badge-danger navbar-badge jumlahPesan"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -103,8 +104,10 @@
                         <a href="<?= base_url() ?>/servis/index" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
                 </li>
+
+
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -129,7 +132,10 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>
+                </li> -->
+
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" title="Logout" id="logout">
                         <i class="fas fa-sign-out-alt"></i>
@@ -376,6 +382,27 @@
     </script>
 
     <script>
+        function jumlahPesan() {
+            let statuspesan = $('#statuspesan').val();
+
+            $.ajax({
+                type: "post",
+                url: "<?= base_url() ?>/servis/jumlahPesan",
+                data: {
+                    statuspesan: statuspesan
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('.jumlahPesan').html(response.data);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + '\n' + thrownError);
+                }
+            });
+
+        }
+
+
         function tampilMessage() {
             $.ajax({
                 url: "<?= base_url() ?>/servis/tampilMessage",
@@ -392,6 +419,7 @@
         }
 
         $(document).ready(function() {
+            jumlahPesan();
             tampilMessage();
         });
     </script>

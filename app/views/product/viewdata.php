@@ -117,8 +117,10 @@
             }
         })
 
+    }
 
-
+    function tambahdetail(prodid) {
+        window.location.href = "<?= base_url() ?>/product/tambahdetail/" + prodid;
     }
 </script>
 

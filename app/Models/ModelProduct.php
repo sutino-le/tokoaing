@@ -29,8 +29,17 @@ class ModelProduct extends Model
         return $this->table('product')->like('prodkat', $keywordlink);
     }
 
-    public function searchbranch($keywordbranch)
+    public function searchbrand($keywordbranch)
     {
         return $this->table('product')->like('prodbrand', $keywordbranch);
+    }
+
+
+
+    public function cekProductFoto($fileGambarFoto)
+    {
+        return $this->table('product')->getWhere([
+            'prodgambar' => $fileGambarFoto
+        ]);
     }
 }

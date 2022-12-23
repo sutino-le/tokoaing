@@ -48,15 +48,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="h2"><?= $prodnama ?></h1>
-                        <p class="h3 py-2">Rp. <?= number_format($prodharga) ?></p>
-                        <p class="py-2">
+                        <h4><span class="badge badge-success">Rp. <?= number_format($prodharga, '0', ',', '.') ?></span></h4>
+                        <!-- <p class="py-2">
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-secondary"></i>
                             <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
-                        </p>
+                        </p> -->
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <h6>Brand:</h6>
@@ -65,9 +65,17 @@
                                 <p class="text-muted"><strong><?= $brandnama ?></strong></p>
                             </li>
                         </ul>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Type:</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="text-muted"><strong><?= $prodtype ?></strong></p>
+                            </li>
+                        </ul>
 
                         <h6>Description:</h6>
-                        <p><?= $proddeskripsi ?></p>
+                        <p align="justify"><?= $proddeskripsi ?></p>
 
                         <!-- <ul class="list-inline">
                             <li class="list-inline-item">

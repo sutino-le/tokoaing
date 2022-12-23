@@ -49,15 +49,18 @@
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
                 <div>
-                    <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:<?= $perunama ?>"><?= $perunama ?></a>
-                    <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:<?= $perutelp ?>"><?= $perutelp ?></a>
-                    <i class="fa fa-whatsapp mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="https://wa.me/<?= $peruwa ?>?text=Halo Graver..." target="_blank"><?= $peruwa ?></a>
+                    <nav class="navbar navbar-expand-sm">
+                        <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:<?= $perunama ?>"><i class="fa fa-envelope mx-2"></i><?= $perunama ?></a>
+                        &nbsp;
+                        <a class="navbar-sm-brand text-light text-decoration-none" href="tel:<?= $perutelp ?>"><i class="fa fa-phone mx-2"></i><?= $perutelp ?></a>
+                        &nbsp;
+                        <a class="navbar-sm-brand text-light text-decoration-none" href="https://wa.me/<?= $peruwa ?>?text=Halo Graver..." target="_blank"><i class="fab fa-whatsapp mx-2"></i><?= $peruwa ?></a>
+                    </nav>
                 </div>
                 <div>
-                    <a class="text-light" href="https://www.instagram.com/rackindo.idn/?hl=id" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <nav class="navbar navbar-expand-sm">
+                        <a class="navbar-sm-brand text-light text-decoration-none" href="https://www.instagram.com/rackindo.idn/?hl=id" target="_blank"><i class="fab fa-instagram mx-2"></i></a>
+                    </nav>
                 </div>
             </div>
         </div>

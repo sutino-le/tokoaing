@@ -12,13 +12,24 @@
     }
 </style>
 
-<?= csrf_field(); ?>
+<?php
+$totalKeranjang = 0;
+foreach ($tampildatakeranjang->getResultArray() as $rowKeranjang) :
+?>
+    <?php $totalKeranjang++; ?>
+<?php endforeach ?>
 
 <?php
-if ($tampildatakeranjang['kerjml'] == "") {
-    $jumlahker = 1;
+echo $totalKeranjang;
+?>
+
+
+
+<?php
+if ($tampilproduct['prodstock'] == 0) {
+    $jumlahker = 0;
 } else {
-    $jumlahker = $tampildatakeranjang['kerjml'];
+    $jumlahker = $totalKeranjang;
 }
 ?>
 
@@ -54,7 +65,7 @@ if ($tampildatakeranjang['kerjml'] == "") {
                                             <span class="glyphicon glyphicon-minus"><i class="fa fa-minus"></i></span>
                                         </button>
                                     </span>
-                                    <input type="text" name="kerjml" id="kerjml" class="form-control input-number" value="<?= $jumlahker ?>" min="1" max="<?= $tampilproduct['prodstock'] ?>">
+                                    <input type="text" name="kerjml" id="kerjml" class="form-control input-number" value="<?= $jumlahker ?>" min="0" max="<?= $tampilproduct['prodstock'] ?>">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="kerjml">
                                             <span class="glyphicon glyphicon-plus"><i class="fa fa-plus"></i></span>
@@ -90,34 +101,40 @@ if ($tampildatakeranjang['kerjml'] == "") {
         let kerjml = $('#kerjml').val();
         let keruser = $('#keruser').val();
 
-        $.ajax({
-            type: "post",
-            url: "<?= base_url() ?>/home/simpanKeranjang",
-            data: {
-                kertanggal: kertanggal,
-                kerbrgid: kerbrgid,
-                kerjml: kerjml,
-                keruser: keruser,
-            },
-            dataType: "json",
-            success: function(response) {
+        if (kerjml == 0) {
+            swal.fire('Error', 'Maaf, jumlah barang kosong', 'error');
+        } else {
+            $.ajax({
+                type: "post",
+                url: "<?= base_url() ?>/home/simpanKeranjang",
+                data: {
+                    kertanggal: kertanggal,
+                    kerbrgid: kerbrgid,
+                    kerjml: kerjml,
+                    keruser: keruser,
+                },
+                dataType: "json",
+                success: function(response) {
 
-                if (response.sukses) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil',
-                        text: response.sukses
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.reload();
-                        }
-                    })
+                    if (response.sukses) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: response.sukses
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + '\n' + thrownError);
                 }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + '\n' + thrownError);
-            }
-        });
+            });
+        }
+
+
     });
 </script>
 

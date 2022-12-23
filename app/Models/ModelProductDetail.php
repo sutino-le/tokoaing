@@ -12,7 +12,7 @@ class ModelProductDetail extends Model
 
     public function productDetail($id)
     {
-        return $this->table('productdetail')->where('detprodid', $id)->get();
+        return $this->table('productdetail')->where('sha1(detprodid)', $id)->get();
     }
 
     public function hitungJumlahRow($id)

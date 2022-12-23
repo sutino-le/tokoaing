@@ -20,6 +20,7 @@ class Product extends BaseController
         $this->modelBrand = new ModelBrand();
         $this->modelKategori = new ModelKategori();
         $this->modelProduct = new ModelProduct();
+        $this->modelProductDetail = new ModelProductDetail();
         helper('form');
     }
 
@@ -52,7 +53,7 @@ class Product extends BaseController
 
                 $tombolEdit = "<button type=\"button\" class=\"btn btn-sm btn-info\" onclick=\"edit('" . sha1($list->prodid) . "')\" title=\"Edit\"><i class='fas fa-edit'></i></button>";
                 $tombolHapus = "<button type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"hapus('" . $list->prodid . "')\" title=\"Delete\"><i class='fas fa-trash-alt'></i></button>";
-                $tambahDetail = "<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"tambahdetail('" . $list->prodid . "')\" title=\"Add Details Image\"><i class='fas fa-plus'></i></button>";
+                $tambahDetail = "<button type=\"button\" class=\"btn btn-sm btn-primary\" onclick=\"tambahdetail('" . sha1($list->prodid) . "')\" title=\"Add Details Image\"><i class='fas fa-plus'></i></button>";
 
                 $id = $list->prodid;
 
@@ -85,11 +86,15 @@ class Product extends BaseController
         $modelProduct = new ModelProduct();
         $cekprod = $modelProduct->find($prodid);
 
-        if ($cekprod['prodgambar'] != NULL) {
+        if ($cekprod['prodgambar'] == "") {
+
+            $this->modelProduct->delete($prodid);
+        } else {
             unlink('upload/' . $cekprod['prodgambar']);
+
+            $this->modelProduct->delete($prodid);
         }
 
-        $this->modelProduct->delete($prodid);
 
         $json = [
             'sukses' => 'Data deleted successfully...'
@@ -202,6 +207,18 @@ class Product extends BaseController
                 'prodharga'         => $prodharga,
                 'prodstock'         => $prodstock,
                 'prodgambar'        => $fileGambarFoto,
+            ]);
+
+
+            $modelProduct = new ModelProduct();
+            $cekData = $modelProduct->cekProductFoto($fileGambarFoto)->getRowArray();
+
+            $modelProductDetail = new ModelProductDetail();
+
+            $modelProductDetail->insert([
+                'detid'           => '',
+                'detprodid'       => $cekData['prodid'],
+                'detprofoto'      => $fileGambarFoto,
             ]);
 
             return redirect()->to('product/index');
@@ -337,9 +354,10 @@ class Product extends BaseController
                     'prodgambar'        => $fileGambarFoto,
                 ]);
 
-
-
-                unlink('upload/' . $cekProLama['brandgambar']);
+                if ($cekProLama['prodgambar'] == "") {
+                } else {
+                    unlink('upload/' . $cekProLama['prodgambar']);
+                }
             }
 
 
@@ -393,5 +411,117 @@ class Product extends BaseController
             ];
             echo json_encode($output);
         }
+    }
+
+    public function tambahdetail($id)
+    {
+        $cekdata = $this->modelProduct->cekProduct($id)->getRowArray();
+
+
+        $data = [
+            'title'             => 'Product Data',
+            'menu'              => 'produk',
+            'submenu'           => 'product',
+            'actmenu'           => '',
+            'validation'        => \Config\Services::validation(),
+            'prodid'            => $cekdata['prodid'],
+            'prodnama'          => $cekdata['prodnama'],
+            'prodtype'          => $cekdata['prodtype'],
+            'tampildetail'      => $this->modelProductDetail->productDetail($id)
+        ];
+        return view('product/tambahdetail', $data);
+    }
+
+
+    // untuk menampilkan form add detail
+    public function adddetail($prodid)
+    {
+
+        $modelProduct = new ModelProduct();
+        $cekData = $modelProduct->find($prodid);
+
+
+        if ($cekData) {
+
+
+            $data = [
+                'prodid'        => $cekData['prodid'],
+                'prodnama'        => $cekData['prodnama'],
+                'prodtype'        => $cekData['prodtype'],
+            ];
+
+            $json = [
+                'data' => view('product/tambahdetailadd', $data)
+            ];
+        }
+        echo json_encode($json);
+    }
+
+    public function simpandetail()
+    {
+
+        $prodid      = $this->request->getPost('prodid');
+        $prodgambar     = $this->request->getFile('prodgambar');
+
+        $id = sha1($prodid);
+
+
+        $cekdata = $this->modelProduct->cekProduct($id)->getRowArray();
+
+        $modelProductDetail = new ModelProductDetail();
+
+
+        $fileGambarFoto = $prodgambar->getRandomName();
+
+        $prodgambar->move('upload', $fileGambarFoto);
+
+
+        $modelProductDetail->insert([
+            'detid'           => '',
+            'detprodid'       => $prodid,
+            'detprofoto'      => $fileGambarFoto,
+        ]);
+
+        if ($modelProductDetail) {
+            $cekdata = $this->modelProduct->cekProduct($id)->getRowArray();
+
+
+            $data = [
+                'title'             => 'Product Data',
+                'menu'              => 'produk',
+                'submenu'           => 'product',
+                'actmenu'           => '',
+                'validation'        => \Config\Services::validation(),
+                'prodid'            => $cekdata['prodid'],
+                'prodnama'          => $cekdata['prodnama'],
+                'prodtype'          => $cekdata['prodtype'],
+                'tampildetail'      => $this->modelProductDetail->productDetail($id)
+            ];
+            return redirect()->to('product/tambahdetail/' . sha1($prodid));
+        }
+    }
+
+
+    public function hapusdetail($detid)
+    {
+        $modelProductDetail = new ModelProductDetail();
+        $cekprod = $modelProductDetail->find($detid);
+
+        if ($cekprod['detprofoto'] == "") {
+
+            $this->modelProductDetail->delete($detid);
+        } else {
+            unlink('upload/' . $cekprod['detprofoto']);
+
+            $this->modelProductDetail->delete($detid);
+        }
+
+
+        $json = [
+            'sukses' => 'Data deleted successfully...'
+        ];
+
+
+        echo json_encode($json);
     }
 }

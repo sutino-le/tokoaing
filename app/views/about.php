@@ -21,4 +21,23 @@
     </div>
 </section>
 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#59ab6e" fill-opacity="1" d="M0,128L80,106.7C160,85,320,43,480,48C640,53,800,107,960,128C1120,149,1280,139,1360,133.3L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+</svg>
+
+<div class="container-fluid text-center">
+    <video controls width="1200" height="800" autoplay>
+        <source src="<?= base_url() ?>/upload/graver.mp4" type="video/mp4" />
+    </video>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#59ab6e" fill-opacity="1" d="M0,192L48,208C96,224,192,256,288,272C384,288,480,288,576,261.3C672,235,768,181,864,176C960,171,1056,213,1152,229.3C1248,245,1344,235,1392,229.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+</svg>
+
+
+<?php include "about_test.php"; ?>
+
+
+
 <?= $this->endSection('isi') ?>

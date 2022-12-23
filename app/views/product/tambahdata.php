@@ -77,7 +77,15 @@
 
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="proddeskripsi" id="proddeskripsi" class="form-control <?= ($validation->hasError('proddeskripsi')) ? 'is-invalid' : '' ?>"><?= old('proddeskripsi') ?></textarea>
+                            <textarea name="proddeskripsi" id="proddeskripsi" class="form-control <?= ($validation->hasError('proddeskripsi')) ? 'is-invalid' : '' ?>"><?= old('proddeskripsi')  ?>
+                            P :  mm<br>
+                            L :  mm<br>
+                            T :  mm<br>
+                            Berat : - kg<br>
+                            <br>
+                            Deskripsi :
+
+                            </textarea>
                             <div class="invalid-feedback"><?= $validation->getError('proddeskripsi') ?></div>
                         </div>
 

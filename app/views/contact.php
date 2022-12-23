@@ -14,24 +14,24 @@
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="inputname">Nama Lengkap</label>
-                    <input type="text" class="form-control mt-1" id="sernama" name="sernama" placeholder="Name">
+                    <input type="text" class="form-control mt-1" id="sernama" name="sernama" placeholder="Name" autocomplete="off">
                     <div class="invalid-feedback errorSernama"></div>
                 </div>
 
                 <div class="form-group col-md-6 mb-3">
                     <label for="inputemail">Email</label>
-                    <input type="email" class="form-control mt-1" id="seremail" name="seremail" placeholder="Email">
+                    <input type="email" class="form-control mt-1" id="seremail" name="seremail" placeholder="Email" autocomplete="off">
                     <div class="invalid-feedback errorSeremail"></div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="inputsubject">Judul</label>
-                <input type="text" class="form-control mt-1" id="sersubject" name="sersubject" placeholder="Subject">
+                <input type="text" class="form-control mt-1" id="sersubject" name="sersubject" placeholder="Subject" autocomplete="off">
                 <div class="invalid-feedback errorSersubject"></div>
             </div>
             <div class="mb-3">
                 <label for="inputmessage">Pesan</label>
-                <textarea class="form-control mt-1" id="serisi" name="serisi" placeholder="Message" rows="8"></textarea>
+                <textarea class="form-control mt-1" id="serisi" name="serisi" placeholder="Message" rows="8" autocomplete="off"></textarea>
                 <div class="invalid-feedback errorSerisi"></div>
             </div>
             <div class="row">

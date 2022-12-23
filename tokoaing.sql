@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Okt 2022 pada 03.14
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.28
+-- Generation Time: Dec 23, 2022 at 11:26 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `baner`
+-- Table structure for table `baner`
 --
 
 CREATE TABLE `baner` (
@@ -39,7 +39,7 @@ CREATE TABLE `baner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `baner`
+-- Dumping data for table `baner`
 --
 
 INSERT INTO `baner` (`banerid`, `banernama`, `banerjudul`, `banersubjudul`, `banerdeskripsi`, `banerfoto`, `banerbackground`, `banerclass`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `baner` (`banerid`, `banernama`, `banerjudul`, `banersubjudul`, `ban
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `brand`
+-- Table structure for table `brand`
 --
 
 CREATE TABLE `brand` (
@@ -59,18 +59,18 @@ CREATE TABLE `brand` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `brand`
+-- Dumping data for table `brand`
 --
 
 INSERT INTO `brand` (`brandid`, `brandnama`, `brandgambar`) VALUES
 (1, 'GRAVER', 'logo-graver.jpg'),
-(2, 'BENEFIT', 'logo-benefit.jpg'),
+(2, 'BENEFIT', '1666253139_1dd038ebc084f246db33.jpg'),
 (3, 'POPULAR', 'logo-popular.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -79,18 +79,22 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`katid`, `katnama`) VALUES
-(1, 'Lemari'),
-(2, 'Meja'),
-(3, 'Rak');
+(1, 'Lemari Pakaian'),
+(2, 'Meja Rias'),
+(3, 'Rak Serba Guna'),
+(4, 'Meja TV'),
+(5, 'Meja Pajangan'),
+(6, 'Meja Makan'),
+(7, 'Rak Sepatu');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keranjang`
+-- Table structure for table `keranjang`
 --
 
 CREATE TABLE `keranjang` (
@@ -102,19 +106,20 @@ CREATE TABLE `keranjang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `keranjang`
+-- Dumping data for table `keranjang`
 --
 
 INSERT INTO `keranjang` (`kerid`, `kertanggal`, `kerbrgid`, `kerjml`, `keruser`) VALUES
 (2, '2022-09-09', 1, 7, 'septiandwicahyo461@gmail.com'),
 (10, '2022-09-12', 1, 4, 'sutinosir@gmail.com'),
 (11, '2022-09-16', 2, 20, 'sutinosir@gmail.com'),
-(14, '2022-09-29', 7, 1, 'sutinosir@gmail.com');
+(14, '2022-09-29', 7, 1, 'sutinosir@gmail.com'),
+(16, '2022-12-19', 8, 1, 'septiandwicahyo461@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `levels`
+-- Table structure for table `levels`
 --
 
 CREATE TABLE `levels` (
@@ -123,7 +128,7 @@ CREATE TABLE `levels` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `levels`
+-- Dumping data for table `levels`
 --
 
 INSERT INTO `levels` (`levelid`, `levelnama`) VALUES
@@ -134,7 +139,7 @@ INSERT INTO `levels` (`levelid`, `levelnama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -148,7 +153,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
@@ -161,7 +166,7 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -177,7 +182,7 @@ CREATE TABLE `penjualan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `perusahaan`
+-- Table structure for table `perusahaan`
 --
 
 CREATE TABLE `perusahaan` (
@@ -194,7 +199,7 @@ CREATE TABLE `perusahaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `perusahaan`
+-- Dumping data for table `perusahaan`
 --
 
 INSERT INTO `perusahaan` (`peruid`, `perunama`, `perualamat`, `perualamatlink`, `perutelp`, `peruwa`, `perufax`, `peruemail`, `peruicon`, `perufoto`) VALUES
@@ -203,7 +208,7 @@ INSERT INTO `perusahaan` (`peruid`, `perunama`, `perualamat`, `perualamatlink`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -215,33 +220,31 @@ CREATE TABLE `product` (
   `proddeskripsi` text NOT NULL,
   `prodharga` double NOT NULL,
   `prodstock` int(11) NOT NULL,
-  `prodgambar` varchar(100) NOT NULL
+  `prodgambar` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`prodid`, `prodnama`, `prodtype`, `prodkat`, `prodbrand`, `proddeskripsi`, `prodharga`, `prodstock`, `prodgambar`) VALUES
-(1, 'Credenza (CRD 2182) - Viral Series', 'CRD 2182', 3, 1, 'Viral Graver Credenza (CRD 2182)\n\n<br> Size : \n<br> Width : 1200 mm\n<br> Depth : 400 mm\n<br> Height : 600 mm', 679000, 20, 'CRD 2182.jpg'),
-(2, 'Lemari 2 Pintu Cermin (LP 2296 XL) - Agusto Series', 'LP 2296 XL', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 996 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 3450000, 20, 'LEMARI 2 PINTU CERMIN LP 2296 XL.jpg'),
-(3, 'Lemari 2 Pintu Cermin (LP 2296) - Agusto Series', 'LP 2296', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 796 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 2067000, 20, 'LEMARI 2 PINTU CERMIN LP 2296.jpg'),
-(4, 'Lemari Pakaian 3 Pintu Agusto Series (LP 2298 XL) ', 'LP 2298 XL', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 1486 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 3849000, 20, 'LEMARI 3 PINTU CERMIN LP 2298 XL.jpg'),
-(5, 'Lemari Pakaian 3 Pintu Agusto Series (LP 2298) - A', 'LP 2298', 1, 1, 'Lemari pakaian \n \n<br> Size : \n<br> Width : 1162 mm\n<br> Depth : 550 mm\n<br> Height : 2005 mm', 3849000, 20, 'LEMARI 3 PINTU CERMIN LP 2298 XL.jpg'),
-(6, 'Tallboy - Agusto Series (TB 2215) - Agusto Series', 'TB 2215', 3, 1, 'Tallboy - Agusto Series (TB 2215)\n \n<br> Size : \n<br> Width : 796 mm\n<br> Depth : 396 mm\n<br> Height : 1000 mm', 1068000, 20, 'RAK TALLBOY TB 2215.jpg'),
-(7, 'Meja Rias - Agusto Series (MR 2225) - Agusto Serie', 'MR 2225', 2, 1, 'Meja Rias - Agusto Series (MR 2225)\n \n<br> Size : \n<br> Width : 900 mm\n<br> Depth : 396 mm\n<br> Height : 1360 mm', 1885000, 20, 'MEJA RIAS MR 2225.jpg'),
-(8, 'Meja Rias - Agusto Series (MR 2226) - Agusto Serie', 'MR 2226', 2, 1, 'Meja Rias - Agusto Series (MR 2226)\n \n<br> Size : \n<br> Width : 900 mm\n<br> Depth : 396 mm\n<br> Height : 1360 mm', 1885000, 20, 'MEJA RIAS MR 2226.jpg'),
-(9, 'Lemari Anak - Agusto Series (BL 2290) - Agusto Ser', 'BL 2290', 1, 1, 'Lemari Anak - Agusto Series (BL 2290)\n \n<br> Size : \n<br> Width : 798 mm\n<br> Depth : 478 mm\n<br> Height : 1400 mm', 2226666, 20, 'LEMARI ANAK BL 2290.jpg'),
-(10, 'Rak Sepatu - Agusto Series (SR 2218) - Agusto Seri', 'SR 2218', 3, 1, 'Rak Sepatu - Agusto Series (SR 2218)\n \n<br> Size : \n<br> Width : 788 mm\n<br> Depth : 376 mm\n<br> Height : 1400 mm', 1290100, 20, 'RAK SEPATU SR 2218.jpg'),
-(11, 'Rak Sepatu - Agusto Series (SR 2219) - Agusto Seri', 'SR 2219', 3, 1, 'Rak Sepatu - Agusto Series (SR 2219)\n \n<br> Size : \n<br> Width : 788 mm\n<br> Depth : 376 mm\n<br> Height : 1820 mm', 1802300, 20, 'RAK SEPATU SR 2219.jpg'),
-(12, 'Meja Tamu - Agusto Series (CT 2231) - Agusto Serie', 'CT 2231', 2, 1, 'Meja Tamu - Agusto Series (CT 2231)\n \n<br> Size : \n<br> Width : 600 mm\n<br> Depth : 600 mm\n<br> Height : 376 mm', 599999, 20, 'MEJA TAMU CT 2231.jpg'),
-(13, 'Meja Tamu - Agusto Series (CT 2232) - Agusto Serie', 'CT 2232', 2, 1, 'Meja Tamu - Agusto Series (CT 2232)\n \n<br> Size : \n<br> Width : 900 mm\n<br> Depth : 900 mm\n<br> Height : 376 mm', 800000, 20, 'MEJA TAMU CT 2232.jpg'),
-(14, 'Meja Tamu - Agusto Series (CT 2233) - Agusto Serie', 'CT 2233', 2, 1, 'Meja Tamu - Agusto Series (CT 2233)\n \n<br> Size : \n<br> Width : 1200 mm\n<br> Depth : 600 mm\n<br> Height : 376 mm', 750000, 20, 'MEJA TAMU CT 2233.jpg');
+(1, 'Meja Rias ZEN Series', 'MR 2025', 2, 1, '                            P : 880<br>\r\n                            L : 420<br>\r\n                            T : 1650<br>\r\n                            Berat : - <br>\r\n                            <br>\r\n                            Deskripsi : Meja Rias ini terbuat dari partikel board dan dipadukan dengan MDF dengan menggunakan Kaki Besi agar terlihat lebih estetika dan kokoh untuk jangka lama (Free kursi).', 1790000, 1, '1671431581_d35e6c2d7e174ce264c5.jpg'),
+(2, 'Meja Rias ZEN Series', 'MR 2026', 2, 1, '                            P : 880<br>\r\n                            L : 420<br>\r\n                            T : 1650<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : Meja Rias ini terbuat dari partikel board dan MDF (Free Kursi).', 1670000, 0, '1671432527_d21256e0d64c75f575a6.jpg'),
+(3, 'Credenza ZEN Series', 'CRD 2080', 4, 1, '                            P : 900<br>\r\n                            L : 396<br>\r\n                            T : 440<br>\r\n                            Berat : - <br>\r\n                            <br>\r\n                            Deskripsi : Untuk body CRD 2080 menggunakan bahan partikel board dan kaki menggunakan bahan MDF serta kaki tengah menggunakan besi adjuster untuk menyesuaikan permukaan lantai, type ini dirancang sangat fleksibilitas untuk memudahkan pembersihan lantai dan tentunya produk juga sangat kokoh.', 450000, 0, '1671434651_13fcda8d525496559231.jpg'),
+(4, 'Meja TV ZEN Series', 'CRD 2082', 4, 1, '                            P : 1186<br>\r\n                            L : 396<br>\r\n                            T : 545<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : Untuk body CRD 2082 menggunakan bahan partikel board dan kaki menggunakan bahan MDF serta kaki tengah menggunakan besi adjuster untuk menyesuaikan permukaan lantai, type ini dirancang sangat fleksibilitas untuk memudahkan pembersihan lantai dan tentunya produk juga sangat kokoh.', 861000, 0, '1671435173_68e46c8fb3f67f8055f9.jpg'),
+(5, 'Meja TV ZEN Series', 'CRD 2086', 4, 1, '                            P : 1363<br>\r\n                            L : 396<br>\r\n                            T : 780<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : Untuk body CRD 2086 menggunakan bahan partikel board dan kaki menggunakan bahan MDF serta kaki tengah menggunakan besi adjuster untuk menyesuaikan permukaan lantai, type ini dirancang sangat fleksibilitas untuk memudahkan pembersihan lantai dan tentunya produk juga sangat kokoh.', 1043000, 0, '1671435477_71558cfb82be74063631.jpg'),
+(6, 'Tallboy ZEN Series', 'TB 2015', 5, 1, '<div>P : 796</div><div>L : 396</div><div>T : 915</div><div>Berat : - </div><div><br></div><div>Deskripsi : </div><div><br></div><div>Tallboy yang di-design elegan menggunakan material Particle Board (PB) dan MDF berkualitas dengan ketebalan 15 mm serta dilapisi Paper dan PVC yang bermutu, sehingga membuat Tallboy ini menjadi kokoh dan tahan terhadap jamur.</div><div>Pemilihan Asesories yang berkualitas juga mempengaruhi performance dari produk kami, terutama pada bagian Rel Laci. Tallboy ini di-design dengan sistem knockdown, sehingga mudah dalam pemasangan ditempat yang sempit ataupun dilantai atas.</div>', 870000, 0, '1671436138_aaf71ce82b8b13993f4a.jpg'),
+(7, 'Lemari Pakaian ZEN Series', 'LP 2096', 1, 1, '<div>P : 950</div><div>L : 530</div><div>T : 2010</div><div>Berat : - </div><div><br></div><div>Deskripsi : </div><div><br></div><div>Lemari 2 Pintu yang di-design elegan body menggunakan material Particle Board (PB) dan pintu menggunakan MDF berkualitas dengan ketebalan 15 mm serta dilapisi Paper dan PVC yang bermutu, sehingga membuat Lemari Pakaian ini menjadi kokoh dan tahan terhadap jamur juga menggunakan Rak Main sehingga memudahkan pengguna untuk mengatur ruangan lemari.</div><div>Pemilihan Asesories yang berkualitas juga mempengaruhi performance dari produk kami, terutama pada bagian Rel Laci dan Engsel Pintu dan Besi Gantungan Baju. Lemari Pakaian ini di-design dengan sistem knockdown, sehingga mudah dalam pemasangan ditempat yang sempit ataupun dilantai atas.</div>', 2600000, 0, '1671436932_36f722d078dcd189fff7.jpg'),
+(8, 'Lemari Pakaian ZEN Series', 'LP 2098', 1, 1, '<div>P : 1420</div><div>L : 530</div><div>T : 2010</div><div>Berat : - </div><div><br></div><div>Deskripsi : </div><div><br></div><div>Lemari 3 Pintu yang di-design elegan body menggunakan material Particle Board (PB) dan pintu menggunakan MDF berkualitas dengan ketebalan 15 mm serta dilapisi Paper dan PVC yang bermutu, sehingga membuat Lemari Pakaian ini menjadi kokoh dan tahan terhadap jamur juga menggunakan Rak Main sehingga memudahkan pengguna untuk mengatur ruangan lemari.</div><div>Pemilihan Asesories yang berkualitas juga mempengaruhi performance dari produk kami, terutama pada bagian Rel Laci dan Engsel Pintu dan Besi Gantungan Baju. Lemari Pakaian ini di-design dengan sistem knockdown, sehingga mudah dalam pemasangan ditempat yang sempit ataupun dilantai atas.</div>', 3550000, 0, '1671437132_6ce4ee7e8b2a61db441f.jpg'),
+(9, 'Meja Makan ZEN Series', 'MK 126', 6, 1, '                            P : 1176<br>\r\n                            L : 590<br>\r\n                            T : 770<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : Meja Makan ini terbuat dari bahan full Partikel Board (PB) dan menggunakan Accessories yang berkualitas, kaki meja ini menggunakan roda agar memudahan perpindahan meja dan Meja Makan ini di-design dengan sistem knockdown, sehingga mudah dalam pemasangan ditempat yang sempit ataupun dilantai atas.', 973000, 0, '1671438009_6568b412f5d29c046e3a.jpg'),
+(10, 'Meja Makan ZEN Series', 'MK 128', 6, 1, 'P : 1400<br>L : 790<br>T : 770<br>Berat : -<br><br>Deskripsi : Meja Makan ini terbuat dari bahan full Partikel Board (PB) dan menggunakan Accessories yang berkualitas, kaki meja ini menggunakan roda agar memudahan perpindahan meja dan Meja Makan ini di-design dengan sistem knockdown, sehingga mudah dalam pemasangan ditempat yang sempit ataupun dilantai atas, juga mempunyai 1 laci dan 1 pintu untuk ruang penyimpanan tertutup.', 1301000, 0, '1671438216_860e8096e99c6795e004.jpg'),
+(11, 'Rak Sepatu AGUSTO Series', 'SR 2219', 7, 1, '                            P : 788 <br>\r\n                            L : 376<br>\r\n                            T : 1820<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : SR 2219 sitem bongkar pasang (Knockdown) juga diperbaharui dan disempurnakan untuk kemudahan konsumen dalam merakitnya dengan harga tetap terjangkau. Kaki dibuat lebih tinggi agar mudah membersihkan lantai di bawah, sehingga kebersihan ruang keluarga anda tetap terjaga. ', 1995000, 0, '1671445793_5911177b08db44ed5bd6.jpg'),
+(12, 'Rak Sepatu AGUSTO Series', 'SR 2218', 7, 1, '                            P : 788<br>\r\n                            L : 376<br>\r\n                            T : 1400<br>\r\n                            Berat : -<br>\r\n                            <br>\r\n                            Deskripsi : ', 1408000, 0, '1671446016_be0be80e081aff605f77.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productdetail`
+-- Table structure for table `productdetail`
 --
 
 CREATE TABLE `productdetail` (
@@ -251,18 +254,64 @@ CREATE TABLE `productdetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `productdetail`
+-- Dumping data for table `productdetail`
 --
 
 INSERT INTO `productdetail` (`detid`, `detprodid`, `detprofoto`) VALUES
-(1, 1, 'CRD 2182.jpg'),
-(2, 1, 'CRD 2186.jpg'),
-(3, 1, 'CRD 2189.jpg');
+(27, 4, '1671440453_143567701973822bbc40.jpg'),
+(28, 1, '1671441018_d70dcfe9bb534ed098cf.jpg'),
+(30, 2, '1671442399_22a6af92fd2534a66b87.jpg'),
+(31, 3, '1671442424_f8a6fe6669a577c441ea.jpg'),
+(32, 5, '1671442464_56417d0b7976cb733d7a.jpg'),
+(33, 6, '1671442486_7cf717e9873401772690.jpg'),
+(35, 7, '1671442542_0532b54bf026c398018f.jpg'),
+(36, 8, '1671442619_6eb50f7a3af666f67a5b.jpg'),
+(37, 9, '1671442638_7925c9210c0069ccb8cc.jpg'),
+(38, 10, '1671442650_69d6fa1e96fc2886bf20.jpg'),
+(40, 11, '1671445873_caafbfe9d6c053562de7.jpg'),
+(41, 12, '1671446016_be0be80e081aff605f77.jpg'),
+(42, 1, '1671504463_1c080e47494b945ac361.jpg'),
+(43, 1, '1671504474_1c7c10a645d8f9a5a8e5.jpg'),
+(44, 1, '1671504512_a97d5e1b5a4c5f785f02.jpg'),
+(45, 1, '1671504521_9b017020e4d0b3eb4e4a.jpg'),
+(46, 2, '1671505881_8868a22ff2652e903b48.jpg'),
+(47, 10, '1671527935_07efca25d9a303ae2981.jpg'),
+(48, 10, '1671527943_53a50dfc17bcdb745933.jpg'),
+(49, 10, '1671527950_548a9acdaef7e224c620.jpg'),
+(50, 10, '1671527960_90a57d9be777099c84a5.jpg'),
+(51, 10, '1671527970_87deaa2334fecde59b4d.jpg'),
+(52, 5, '1671528078_fce17a3fa11e38fa4c20.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sosmed`
+-- Table structure for table `servis`
+--
+
+CREATE TABLE `servis` (
+  `serid` int(11) NOT NULL,
+  `sernama` varchar(100) NOT NULL,
+  `seremail` varchar(100) NOT NULL,
+  `serdate` datetime NOT NULL,
+  `sersubject` varchar(100) NOT NULL,
+  `serisi` text NOT NULL,
+  `serstatus` varchar(50) NOT NULL,
+  `seruser` varchar(100) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `servis`
+--
+
+INSERT INTO `servis` (`serid`, `sernama`, `seremail`, `serdate`, `sersubject`, `serisi`, `serstatus`, `seruser`, `updated_at`) VALUES
+(6, 'a', 'asda@sfgs.com', '2022-12-19 03:42:37', 'dfgdfg', 'dfgdfgdfgdf', 'Progres', '', '2022-12-19 09:42:37'),
+(7, 'sdfsdfgtdsgsdg', 'asda@sfgs.com', '2022-12-19 04:20:01', 'asdg', 'asdgadgadgadg', 'Progres', '', '2022-12-19 10:20:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sosmed`
 --
 
 CREATE TABLE `sosmed` (
@@ -274,7 +323,7 @@ CREATE TABLE `sosmed` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `sosmed`
+-- Dumping data for table `sosmed`
 --
 
 INSERT INTO `sosmed` (`sosmedid`, `sosmedlink`, `sosmednama`, `sosmedicon`, `sosmedperuid`) VALUES
@@ -283,7 +332,7 @@ INSERT INTO `sosmed` (`sosmedid`, `sosmedlink`, `sosmednama`, `sosmedicon`, `sos
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -303,19 +352,19 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`userid`, `usernama`, `userpassword`, `userlevel`, `usergender`, `userlahir`, `useralamat`, `userrt`, `userrw`, `useralamatid`, `usertelp`, `userfoto`, `usernote`) VALUES
 ('choirula2109@yahoo.com', 'Choirul Anam', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, '', '0000-00-00', '', '', '', 0, '', '', ''),
-('septiandwicahyo461@gmail.com', 'Septian Dwi Cahyo', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, '', '0000-00-00', '', '', '', 0, '', '', ''),
+('septiandwicahyo461@gmail.com', 'Septian Dwi Cahyo', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '', '0000-00-00', '', '', '', 0, '', '', ''),
 ('sutino.skom@gmail.com', 'Sutino', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, '', '1992-01-12', '', '', '', 1, '', '', ''),
 ('sutinosir@gmail.com', 'Sutino aja', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Pria', '1992-01-12', 'Jl. Mawar No.41C', '008', '004', 4442, '+6285810100913', '1663638829_ab19f3cc1abdbab9f328.jpg', 'Kosan Warna Hijau');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `uservalidasi`
+-- Table structure for table `uservalidasi`
 --
 
 CREATE TABLE `uservalidasi` (
@@ -327,19 +376,19 @@ CREATE TABLE `uservalidasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `uservalidasi`
+-- Dumping data for table `uservalidasi`
 --
 
 INSERT INTO `uservalidasi` (`valuserid`, `valusernama`, `valuserpassword`, `valuserlevel`, `valuserstatus`) VALUES
 ('choirula2109@yahoo.com', 'Choirul Anam', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Terverifikasi'),
-('septiandwicahyo461@gmail.com', 'Septian Dwi Cahyo', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, 'Terverifikasi'),
+('septiandwicahyo461@gmail.com', 'Septian Dwi Cahyo', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'Terverifikasi'),
 ('sutino.skom@gmail.com', 'Sutino', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'Terverifikasi'),
 ('sutinosir@gmail.com', 'Sutino aja', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Terverifikasi');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wilayah`
+-- Table structure for table `wilayah`
 --
 
 CREATE TABLE `wilayah` (
@@ -352,7 +401,7 @@ CREATE TABLE `wilayah` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `wilayah`
+-- Dumping data for table `wilayah`
 --
 
 INSERT INTO `wilayah` (`id_wilayah`, `propinsi`, `kota_kabupaten`, `kecamatan`, `kelurahan`, `kodepos`) VALUES
@@ -2992,55 +3041,55 @@ INSERT INTO `wilayah` (`id_wilayah`, `propinsi`, `kota_kabupaten`, `kecamatan`, 
 --
 
 --
--- Indeks untuk tabel `baner`
+-- Indexes for table `baner`
 --
 ALTER TABLE `baner`
   ADD PRIMARY KEY (`banerid`);
 
 --
--- Indeks untuk tabel `brand`
+-- Indexes for table `brand`
 --
 ALTER TABLE `brand`
   ADD PRIMARY KEY (`brandid`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`katid`);
 
 --
--- Indeks untuk tabel `keranjang`
+-- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`kerid`);
 
 --
--- Indeks untuk tabel `levels`
+-- Indexes for table `levels`
 --
 ALTER TABLE `levels`
   ADD PRIMARY KEY (`levelid`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`penid`);
 
 --
--- Indeks untuk tabel `perusahaan`
+-- Indexes for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
   ADD PRIMARY KEY (`peruid`);
 
 --
--- Indeks untuk tabel `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`prodid`,`prodkat`,`prodbrand`) USING BTREE,
@@ -3048,117 +3097,129 @@ ALTER TABLE `product`
   ADD KEY `brand` (`prodbrand`);
 
 --
--- Indeks untuk tabel `productdetail`
+-- Indexes for table `productdetail`
 --
 ALTER TABLE `productdetail`
   ADD PRIMARY KEY (`detid`);
 
 --
--- Indeks untuk tabel `sosmed`
+-- Indexes for table `servis`
+--
+ALTER TABLE `servis`
+  ADD PRIMARY KEY (`serid`);
+
+--
+-- Indexes for table `sosmed`
 --
 ALTER TABLE `sosmed`
   ADD PRIMARY KEY (`sosmedid`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userid`);
 
 --
--- Indeks untuk tabel `uservalidasi`
+-- Indexes for table `uservalidasi`
 --
 ALTER TABLE `uservalidasi`
   ADD PRIMARY KEY (`valuserid`);
 
 --
--- Indeks untuk tabel `wilayah`
+-- Indexes for table `wilayah`
 --
 ALTER TABLE `wilayah`
   ADD PRIMARY KEY (`id_wilayah`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `baner`
+-- AUTO_INCREMENT for table `baner`
 --
 ALTER TABLE `baner`
   MODIFY `banerid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `brand`
+-- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `katid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `katid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `keranjang`
+-- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `kerid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `kerid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `levels`
+-- AUTO_INCREMENT for table `levels`
 --
 ALTER TABLE `levels`
   MODIFY `levelid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT untuk tabel `penjualan`
+-- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
   MODIFY `penid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `perusahaan`
+-- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
   MODIFY `peruid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `prodid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2217;
+  MODIFY `prodid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `productdetail`
+-- AUTO_INCREMENT for table `productdetail`
 --
 ALTER TABLE `productdetail`
-  MODIFY `detid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `detid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
--- AUTO_INCREMENT untuk tabel `sosmed`
+-- AUTO_INCREMENT for table `servis`
+--
+ALTER TABLE `servis`
+  MODIFY `serid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `sosmed`
 --
 ALTER TABLE `sosmed`
   MODIFY `sosmedid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `wilayah`
+-- AUTO_INCREMENT for table `wilayah`
 --
 ALTER TABLE `wilayah`
   MODIFY `id_wilayah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2628;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `product`
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `brand` FOREIGN KEY (`prodbrand`) REFERENCES `brand` (`brandid`) ON DELETE CASCADE ON UPDATE CASCADE,

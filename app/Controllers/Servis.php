@@ -63,6 +63,32 @@ class Servis extends BaseController
 
 
 
+    // menampilkan jumlah pesan
+    function jumlahPesan()
+    {
+        if ($this->request->isAJAX()) {
+            $status         = "Progres";
+
+
+            $modelServis = new ModelServis();
+            $dataServis = $modelServis->tampilMessage($status);
+
+
+
+            $data = [
+                'tampildata' => $dataServis,
+            ];
+
+            $json = [
+                'data' => view('servis/jumlahpesan', $data)
+            ];
+
+            echo json_encode($json);
+        }
+    }
+
+
+
     // menampilkan data baner
     function tampilMessage()
     {

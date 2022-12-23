@@ -73,7 +73,7 @@
                     <form action="" method="post">
                         <div class="d-flex">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Masukan pencarian..." name="keyword" value="<?= old('keyword') ?>">
+                                <input type="text" class="form-control" placeholder="Masukan pencarian..." name="keyword" value="<?= old('keyword') ?>" autocomplete="off">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit" name="submit"><i class="fas fa-search"></i></button>
                                 </div>
@@ -87,7 +87,7 @@
                 <input type="hidden" id="iduser" value="<?= session()->iduser ?>">
                 <?php foreach ($tampilkatalog as $rowproduct) : ?>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
                                 <img class="card-img rounded-0 img-fluid" src="<?= base_url() ?>/upload/<?= $rowproduct['prodgambar'] ?>">
@@ -113,7 +113,15 @@
                                         <i class="text-muted fa fa-star"></i>
                                     </li>
                                 </ul> -->
-                                <p class="text mb-0">Deskripsi : <?= substr($rowproduct['proddeskripsi'], 0, 50) ?>...</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4><span class="badge badge-success mt-3">Rp. <?= number_format($rowproduct['prodharga'], '0', ',', '.') ?></span></h4>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <h4><span class="badge <?= ($rowproduct['prodstock'] == 0) ? 'badge-secondary' : 'badge-primary' ?>  mt-3">Stock : <?= number_format($rowproduct['prodstock'], '0', ',', '.') ?></span></h4>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -113,17 +113,17 @@ class Home extends BaseController
         $modelProduct = new ModelProduct();
 
 
-        if ($keyword) {
+        if ($keyword != "") {
             $product = $modelProduct->search($keyword);
-        } else if ($keywordlink) {
+        } else if ($keywordlink != "") {
             $product = $modelProduct->searchlink($keywordlink);
-        } else if ($keywordbrand) {
+        } else if ($keywordbrand != "") {
             $product = $modelProduct->searchbrand($keywordbrand);
         } else {
             $product = $modelProduct;
         }
 
-        $dataProduct = $product->paginate(8, 'product');
+        $dataProduct = $product->paginate(9, 'product');
 
 
         if ($rowPeru > 0) {
@@ -158,7 +158,7 @@ class Home extends BaseController
                 'databrand'        => 'Default',
                 'tampilkatalog'     => 'Default',
                 'pager'             => 'Default',
-                'kategori'          => 'Default',
+                'kategori'          => '',
             ];
         }
 
@@ -209,17 +209,17 @@ class Home extends BaseController
                 'peruemail'             => $rowPeru['peruemail'],
                 'peruicon'              => $rowPeru['peruicon'],
                 'perufoto'              => $rowPeru['perufoto'],
-                'databrand'            => $cekBrand,
+                'databrand'             => $cekBrand,
                 'prodid'                => $rowProduct['prodid'],
                 'prodnama'              => $rowProduct['prodnama'],
                 'prodtype'              => $rowProduct['prodtype'],
                 'prodkat'               => $rowProduct['prodkat'],
-                'prodbrand'            => $rowProduct['prodbrand'],
+                'prodbrand'             => $rowProduct['prodbrand'],
                 'proddeskripsi'         => $rowProduct['proddeskripsi'],
                 'prodharga'             => $rowProduct['prodharga'],
                 'prodstock'             => $rowProduct['prodstock'],
                 'prodgambar'            => $rowProduct['prodgambar'],
-                'productDetail'         => $modelProductDetail->productDetail($rowProduct['prodid']),
+                'productDetail'         => $modelProductDetail->productDetail(sha1($rowProduct['prodid'])),
                 'brandnama'            => $rowBrand['brandnama'],
                 'tampildatakeranjang'   => $rowKeranjang,
             ];
@@ -432,7 +432,7 @@ class Home extends BaseController
             $dataProduct = $modelProduct->find($kerbrgid);
 
             $modelKeranjang = new ModelKeranjang();
-            $rowKeranjang = $modelKeranjang->cekKeranjang($kerbrgid, $keruser)->getRowArray();
+            $rowKeranjang = $modelKeranjang->cekKeranjang($kerbrgid, $keruser);
 
 
 
@@ -1051,11 +1051,6 @@ class Home extends BaseController
             echo json_encode($json);
         }
     }
-
-
-
-
-
 
     // 
     public function sendEmail()
